@@ -2,6 +2,7 @@ import React from "react";
 import { UserDetailRes } from "../../external/data/UserDetailRes";
 import { getUserData } from "../../external/GetUser";
 import { makeStyles } from "@material-ui/core/styles";
+import sample from "../../static/sample.png";
 import {
   Card,
   CardContent,
@@ -10,7 +11,14 @@ import {
   Container,
   Grid,
   CardMedia,
-  Avatar
+  Avatar,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  TableContainer,
+  Paper
 } from "@material-ui/core";
 import { RouteComponentProps } from "react-router-dom";
 import { TopState } from "../top/Top";
@@ -91,21 +99,63 @@ export class Detail extends React.Component<DetailProps, UserDetailRes> {
             </CardContent>
           </Card>
         </Box>
-        {/* <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <Grid container justify="center">
-              {[0, 1, 2].map(value => (
-                <Grid key={value} item>
-                  <Card>
-                    <CardContent>
-                      <Typography>Word of the Day</Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))}
-            </Grid>
-          </Grid>
-        </Grid> */}
+        <Box m={2}>
+          <Card style={{ maxWidth: 270, display: "flex" }}>
+            <CardMedia
+              image={sample}
+              component="img"
+              style={{ width: 100, margin: 15 }}
+            ></CardMedia>
+            <CardContent>
+              <Typography color="primary" variant="h6" component="h6">
+                Challenger
+              </Typography>
+              <Typography color="textSecondary">Top 5%</Typography>
+            </CardContent>
+          </Card>
+        </Box>
+        <Box m={2}>
+          <TableContainer component={Paper}>
+            <Table aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Detail Score</TableCell>
+                  <TableCell align="right">followers</TableCell>
+                  <TableCell align="right">issues</TableCell>
+                  <TableCell align="right">pullRequests</TableCell>
+                  <TableCell align="right">repositories</TableCell>
+                  <TableCell align="right">forks</TableCell>
+                  <TableCell align="right">stargazer</TableCell>
+                  <TableCell align="right">watchers</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell component="th" scope="row"></TableCell>
+                  <TableCell align="right">
+                    {this.state.followersCount}
+                  </TableCell>
+                  <TableCell align="right">{this.state.issuesCount}</TableCell>
+                  <TableCell align="right">
+                    {this.state.pullRequestCount}
+                  </TableCell>
+                  <TableCell align="right">
+                    {this.state.repositoriesCount}
+                  </TableCell>
+                  <TableCell align="right">
+                    {this.state.forksCountTotal}
+                  </TableCell>
+                  <TableCell align="right">
+                    {this.state.stargazerCountTotal}
+                  </TableCell>
+                  <TableCell align="right">
+                    {this.state.watchersCountTotal}
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Box>
       </Container>
     );
   }
