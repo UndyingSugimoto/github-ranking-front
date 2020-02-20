@@ -7,5 +7,5 @@ import { getUser } from './grapql/GetUser';
 ReactDOM.render(<App />, document.getElementById('root'));
 
 
-console.log(getUser('WataruShimomura'))
+getUser('WataruShimomura')
 
