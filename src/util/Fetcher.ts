@@ -1,5 +1,3 @@
-
-
 const wrap = <T>(task: Promise<Response>): Promise<T> => {
     return new Promise((resolve, reject) => {
       task

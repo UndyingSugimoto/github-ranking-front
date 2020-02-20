@@ -1,11 +1,31 @@
-import React from "react"
+import React from "react";
+import { UserDetailRes } from "../../external/data/UserDetailRes";
+import { getUserDetail } from "../../external/GetUser";
 
 type DetailProps = {
-    foo: string;
+  userId: string;
+};
+
+export class Detail extends React.Component<DetailProps, UserDetailRes> {
+  componentDidMount() {
+    this.getUserDetail(this.props.userId);
   }
-  export class Detail extends React.Component<DetailProps, {}> {
-      render() {
-          return <span>{this.props.foo}</span>
-      }
+
+  getUserDetail(userId: string) {
+    getUserDetail(userId).then(res => {
+      this.setState(res);
+    });
   }
-  
+
+  render() {
+    const body = () => {
+      return (
+        <div>
+          <span></span>
+        </div>
+      );
+    };
+
+    return body;
+  }
+}
