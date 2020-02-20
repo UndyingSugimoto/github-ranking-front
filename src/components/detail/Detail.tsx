@@ -21,7 +21,7 @@ export class Detail extends React.Component<DetailProps, UserDetailRes> {
     const body = () => {
       return (
         <div>
-          <span>{this.state.currentNumber}</span>
+          <span>{this.state.userId}</span>
         </div>
       );
     };

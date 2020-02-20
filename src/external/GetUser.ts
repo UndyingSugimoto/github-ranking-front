@@ -95,11 +95,15 @@ export async function getUserData(userId: string) {
 
   if (exists.exists) {
     console.log("exists");
-    return await getUserDetail(userId);
+    const detail = await getUserDetail(userId);
+    console.log("detail :" + detail.userId);
+    return detail;
   } else {
     console.log("not exists");
     const userRes = await getUser(userId);
     await entryUser(userRes);
-    return await getUserDetail(userId);
+    const detail = await getUserDetail(userId);
+    console.log("detail :" + detail.userId);
+    return detail;
   }
 }
