@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 import { RouteComponentProps } from "react-router-dom";
 import { TopState } from "../top/Top";
+import { Header } from "../parts/Header";
 
 interface DetailProps extends RouteComponentProps<{}, {}, TopState> {
   userId: string;
@@ -63,6 +64,7 @@ export class Detail extends React.Component<DetailProps, UserDetailRes> {
     }
     return (
       <Container fixed>
+        <Header />
         <Box m={2}>
           <Card>
             <CardContent>
