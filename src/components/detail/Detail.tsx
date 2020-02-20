@@ -69,21 +69,25 @@ export class Detail extends React.Component<DetailProps, UserDetailRes> {
       <Container fixed>
         <Header />
         <Box m={2}>
-          <Card>
-            <CardContent>
-              <Typography>{this.state.userId}</Typography>
-            </CardContent>
+          <Card style={{ maxWidth: 600, display: "flex" }}>
             <CardMedia
               src={this.state.avatarUrl}
               component="img"
-              style={{ width: 100, margin: 5 }}
+              style={{ width: 100, margin: 15 }}
             ></CardMedia>
-          </Card>
-        </Box>
-        <Box m={2}>
-          <Card>
             <CardContent>
-              <Typography>{this.state.userId}</Typography>
+              <Typography variant="h6" component="h6">
+                ID : {this.state.userId}
+              </Typography>
+              <Typography color="textSecondary">
+                Rank : {this.state.rank}/{this.state.currentNumber}
+              </Typography>
+              <Typography color="textSecondary">
+                Score : {this.state.score}
+              </Typography>
+              <Typography color="textSecondary">
+                MainLanguage : {this.state.mainLanguage}
+              </Typography>
             </CardContent>
           </Card>
         </Box>
