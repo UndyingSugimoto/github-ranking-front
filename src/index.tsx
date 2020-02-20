@@ -1,11 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import { getUser } from './external/GetUser';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import { getUser, getUserDetail, getUserData } from "./external/GetUser";
 
+ReactDOM.render(<App />, document.getElementById("root"));
 
-ReactDOM.render(<App />, document.getElementById('root'));
-
-
-getUser('WataruShimomura')
-
+console.log("start");
+getUserData("WataruShimomura");
+console.log("end");
