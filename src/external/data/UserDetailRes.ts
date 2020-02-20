@@ -1,6 +1,7 @@
 export interface UserDetailRes {
   userName: string;
   userId: string;
+  avatarUrl: string;
   tier: string;
   rank: Number;
   score: Number;

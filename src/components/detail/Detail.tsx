@@ -1,6 +1,6 @@
 import React from "react";
 import { UserDetailRes } from "../../external/data/UserDetailRes";
-import { getUserDetail } from "../../external/GetUser";
+import { getUserData } from "../../external/GetUser";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Card,
@@ -8,7 +8,9 @@ import {
   Typography,
   Box,
   Container,
-  Grid
+  Grid,
+  CardMedia,
+  Avatar
 } from "@material-ui/core";
 import { RouteComponentProps } from "react-router-dom";
 import { TopState } from "../top/Top";
@@ -51,10 +53,11 @@ export class Detail extends React.Component<DetailProps, UserDetailRes> {
   }
 
   getUserDetail(userId: string) {
-    getUserDetail(userId).then(res => {
+    getUserData(userId).then(res => {
       console.log("state :" + res);
       this.setState(res);
       console.log("this.state.userId :" + this.state.userId);
+      console.log("this.state.avatarUrl :" + this.state.avatarUrl);
     });
   }
 
@@ -70,9 +73,21 @@ export class Detail extends React.Component<DetailProps, UserDetailRes> {
             <CardContent>
               <Typography>{this.state.userId}</Typography>
             </CardContent>
+            <CardMedia
+              src={this.state.avatarUrl}
+              component="img"
+              style={{ width: 100, margin: 5 }}
+            ></CardMedia>
           </Card>
         </Box>
-        <Grid container spacing={2}>
+        <Box m={2}>
+          <Card>
+            <CardContent>
+              <Typography>{this.state.userId}</Typography>
+            </CardContent>
+          </Card>
+        </Box>
+        {/* <Grid container spacing={2}>
           <Grid item xs={12}>
             <Grid container justify="center">
               {[0, 1, 2].map(value => (
@@ -86,7 +101,7 @@ export class Detail extends React.Component<DetailProps, UserDetailRes> {
               ))}
             </Grid>
           </Grid>
-        </Grid>
+        </Grid> */}
       </Container>
     );
   }

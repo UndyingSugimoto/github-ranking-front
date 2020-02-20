@@ -10,6 +10,7 @@ export async function getUser(loginUserId: String) {
   const query = gql`
     {
         user(login: "${loginUserId}") {
+          avatarUrl
           repositories(first:100,ownerAffiliations:OWNER,orderBy:{field: STARGAZERS,direction:DESC}) {
             nodes {
               id
@@ -65,7 +66,7 @@ export async function entryUser(user: GetUserRes) {
   });
 }
 
-export async function getUserDetail(userId: string) {
+async function getUserDetail(userId: string) {
   const endpoint = process.env.REACT_APP_BACKEND_ENDPOINT as string;
   const url = "/github-ranking/user/detail?";
   let params = new URLSearchParams();
