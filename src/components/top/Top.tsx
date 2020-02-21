@@ -25,7 +25,6 @@ import {
 } from "../../const/Language";
 import { RankingList } from "../parts/RankingList";
 import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
-import { UNSEARCHED } from "../../const/UtilCont";
 
 interface TopProps extends RouteComponentProps<{}> {
   screenName: string;
