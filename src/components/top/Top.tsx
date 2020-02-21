@@ -1,6 +1,13 @@
 import React, { ChangeEvent } from "react";
 import Button from "@material-ui/core/Button";
-import { TextField, Container, Box, Typography, Grid } from "@material-ui/core";
+import {
+  TextField,
+  Container,
+  Box,
+  Typography,
+  Grid,
+  Snackbar
+} from "@material-ui/core";
 import { Header } from "../parts/Header";
 import { RouteComponentProps } from "react-router-dom";
 import { getRanks } from "../../external/GetRanks";
@@ -17,6 +24,8 @@ import {
   GO
 } from "../../const/Language";
 import { RankingList } from "../parts/RankingList";
+import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
+import { UNSEARCHED } from "../../const/UtilCont";
 
 interface TopProps extends RouteComponentProps<{}> {
   screenName: string;
@@ -24,7 +33,11 @@ interface TopProps extends RouteComponentProps<{}> {
 
 export interface TopState {
   userId: string;
+  dialogOpen: boolean;
   ranking: RankgByLanguageRes;
+}
+function Alert(props: AlertProps) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
 export class Top extends React.Component<TopProps, TopState> {
@@ -32,6 +45,7 @@ export class Top extends React.Component<TopProps, TopState> {
     super(props);
     this.state = {
       userId: "",
+      dialogOpen: false,
       ranking: {
         rankByLanguages: [
           { language: GENERAL, userInfomations: [] },
@@ -50,6 +64,13 @@ export class Top extends React.Component<TopProps, TopState> {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  dialogClose = (event?: React.SyntheticEvent, reason?: string) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    this.setState({ dialogOpen: false });
+  };
+
   componentDidMount() {
     this.getRanking();
   }
@@ -61,6 +82,13 @@ export class Top extends React.Component<TopProps, TopState> {
   }
 
   handleClick() {
+    if (this.state.userId === "") {
+      console.log("2");
+
+      this.setState({ dialogOpen: true });
+      return;
+    }
+
     this.props.history.push({
       pathname: "/detail",
       state: { userId: this.state.userId }
@@ -147,6 +175,11 @@ export class Top extends React.Component<TopProps, TopState> {
               <RankingList ranksByLanguage={go} />
             </Grid>
           </Box>
+          <Snackbar open={this.state.dialogOpen} autoHideDuration={6000}>
+            <Alert onClose={this.dialogClose} severity="error">
+              please fill in the value !
+            </Alert>
+          </Snackbar>
         </Container>
       </div>
     );
