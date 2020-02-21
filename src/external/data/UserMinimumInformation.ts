@@ -1,6 +1,6 @@
 export interface UserMinimumInformation {
-  userId: String;
+  userId: string;
   score: Number;
-  mainLanguage: String;
-  avatarUrl: String;
+  mainLanguage: string;
+  avatarUrl: string;
 }

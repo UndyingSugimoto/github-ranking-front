@@ -1,0 +1,9 @@
+export const GENERAL = "General";
+export const JAVASCRIPT = "JavaScript";
+export const PYTHON = "Python";
+export const JAVA = "Java";
+export const CSHARP = "C#";
+export const PHP = "PHP";
+export const C_PLUS = "C++";
+export const RUBY = "Ruby";
+export const GO = "Go";

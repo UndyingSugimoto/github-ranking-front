@@ -16,6 +16,20 @@ import { Header } from "../parts/Header";
 import { RouteComponentProps } from "react-router-dom";
 import { getRanks } from "../../external/GetRanks";
 import { RankgByLanguageRes } from "../../external/data/RanksByLanguageRes";
+import {
+  JAVASCRIPT,
+  GENERAL,
+  PYTHON,
+  JAVA,
+  CSHARP,
+  PHP,
+  C_PLUS,
+  RUBY,
+  GO
+} from "../../const/Language";
+import { textAlign } from "@material-ui/system";
+import { RankingListItem } from "../parts/RankingListItem";
+import { RankingList } from "../parts/RankingList";
 
 interface TopProps extends RouteComponentProps<{}> {
   screenName: string;
@@ -29,7 +43,22 @@ export interface TopState {
 export class Top extends React.Component<TopProps, TopState> {
   constructor(props: TopProps, state: TopState) {
     super(props);
-    this.state = { userId: "", ranking: { rankByLanguages: [] } };
+    this.state = {
+      userId: "",
+      ranking: {
+        rankByLanguages: [
+          { language: GENERAL, userInfomations: [] },
+          { language: JAVASCRIPT, userInfomations: [] },
+          { language: PYTHON, userInfomations: [] },
+          { language: JAVA, userInfomations: [] },
+          { language: CSHARP, userInfomations: [] },
+          { language: PHP, userInfomations: [] },
+          { language: C_PLUS, userInfomations: [] },
+          { language: RUBY, userInfomations: [] },
+          { language: GO, userInfomations: [] }
+        ]
+      }
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
@@ -74,6 +103,34 @@ export class Top extends React.Component<TopProps, TopState> {
   }
 
   render() {
+    const general = this.state.ranking.rankByLanguages.filter(
+      t => t.language === GENERAL
+    )[0];
+    const javascript = this.state.ranking.rankByLanguages.filter(
+      t => t.language === JAVASCRIPT
+    )[0];
+    const python = this.state.ranking.rankByLanguages.filter(
+      t => t.language === PYTHON
+    )[0];
+    const java = this.state.ranking.rankByLanguages.filter(
+      t => t.language === JAVA
+    )[0];
+    const csharp = this.state.ranking.rankByLanguages.filter(
+      t => t.language === CSHARP
+    )[0];
+    const php = this.state.ranking.rankByLanguages.filter(
+      t => t.language === PHP
+    )[0];
+    const cplus = this.state.ranking.rankByLanguages.filter(
+      t => t.language === C_PLUS
+    )[0];
+    const ruby = this.state.ranking.rankByLanguages.filter(
+      t => t.language === RUBY
+    )[0];
+    const go = this.state.ranking.rankByLanguages.filter(
+      t => t.language === GO
+    )[0];
+
     return (
       <div>
         <Container>
@@ -100,121 +157,24 @@ export class Top extends React.Component<TopProps, TopState> {
           </Box>
           <Box m={10}>
             <Grid container spacing={2}>
-              <Grid item xs={12} md={4}>
-                <Typography variant="h6">Text only</Typography>
-                <div>
-                  <List>
-                    {this.generate(
-                      <ListItem>
-                        <ListItemAvatar>
-                          <Avatar
-                            alt="Travis Howard"
-                            src="/static/images/avatar/2.jpg"
-                          />
-                        </ListItemAvatar>
-                        <ListItemText primary="Single-line item" />
-                      </ListItem>
-                    )}
-                  </List>
-                </div>
-              </Grid>
-              <Grid item xs={12} md={4}>
-                <Typography variant="h6">Icon with text</Typography>
-                <div>
-                  <List>
-                    {this.generate(
-                      <ListItem>
-                        <ListItemAvatar>
-                          <Avatar
-                            alt="Travis Howard"
-                            src="/static/images/avatar/2.jpg"
-                          />
-                        </ListItemAvatar>
-                        <ListItemText primary="Single-line item" />
-                      </ListItem>
-                    )}
-                  </List>
-                </div>
-              </Grid>
-              <Grid item xs={12} md={4}>
-                <Typography variant="h6">Avatar with text</Typography>
-                <div>
-                  <List>
-                    {this.generate(
-                      <ListItem>
-                        <ListItemAvatar>
-                          <Avatar
-                            alt="Travis Howard"
-                            src="/static/images/avatar/2.jpg"
-                          />
-                        </ListItemAvatar>
-                        <ListItemText primary="Single-line item" />
-                      </ListItem>
-                    )}
-                  </List>
-                </div>
-              </Grid>
+              <RankingList ranksByLanguage={general} />
+              <RankingList ranksByLanguage={javascript} />
+              <RankingList ranksByLanguage={python} />
             </Grid>
-            {/* Gridの境目 */}
           </Box>
           <Box m={10}>
             <Grid container spacing={2}>
-              <Grid item xs={12} md={4}>
-                <Typography variant="h6">Text only</Typography>
-                <div>
-                  <List>
-                    {this.generate(
-                      <ListItem>
-                        <ListItemAvatar>
-                          <Avatar
-                            alt="Travis Howard"
-                            src="/static/images/avatar/2.jpg"
-                          />
-                        </ListItemAvatar>
-                        <ListItemText primary="Single-line item" />
-                      </ListItem>
-                    )}
-                  </List>
-                </div>
-              </Grid>
-              <Grid item xs={12} md={4}>
-                <Typography variant="h6">Icon with text</Typography>
-                <div>
-                  <List>
-                    {this.generate(
-                      <ListItem>
-                        <ListItemAvatar>
-                          <Avatar
-                            alt="Travis Howard"
-                            src="/static/images/avatar/2.jpg"
-                          />
-                        </ListItemAvatar>
-                        <ListItemText primary="Single-line item" />
-                      </ListItem>
-                    )}
-                  </List>
-                </div>
-              </Grid>
-              <Grid item xs={12} md={4}>
-                <Typography variant="h6">Avatar with text</Typography>
-                <div>
-                  <List>
-                    {this.generate(
-                      <ListItem>
-                        <ListItemAvatar>
-                          <Avatar
-                            alt="Travis Howard"
-                            src="/static/images/avatar/2.jpg"
-                          />
-                        </ListItemAvatar>
-                        <ListItemText primary="Single-line item" />
-                      </ListItem>
-                    )}
-                  </List>
-                </div>
-              </Grid>
+              <RankingList ranksByLanguage={java} />
+              <RankingList ranksByLanguage={csharp} />
+              <RankingList ranksByLanguage={php} />
             </Grid>
-            {/* Gridの境目 */}
+          </Box>
+          <Box m={10}>
+            <Grid container spacing={2}>
+              <RankingList ranksByLanguage={cplus} />
+              <RankingList ranksByLanguage={ruby} />
+              <RankingList ranksByLanguage={go} />
+            </Grid>
           </Box>
         </Container>
       </div>
