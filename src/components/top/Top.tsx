@@ -82,8 +82,6 @@ export class Top extends React.Component<TopProps, TopState> {
 
   handleClick() {
     if (this.state.userId === "") {
-      console.log("2");
-
       this.setState({ dialogOpen: true });
       return;
     }
