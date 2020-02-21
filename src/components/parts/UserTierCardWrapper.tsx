@@ -1,5 +1,12 @@
 import React from "react";
-import sample from "../../static/sample.png";
+import bronze from "../../static/bronze.png";
+import silver from "../../static/silver.png";
+import gold from "../../static/gold.png";
+import pratinum from "../../static/pratinum.png";
+import diamond from "../../static/diamond.png";
+import master from "../../static/master.png";
+import challenger from "../../static/challenger.png";
+
 import {
   CHALLENGER,
   MASTER,
@@ -24,7 +31,7 @@ export class UserTierCardWrapper extends React.Component<
         <UserTierCard
           tierName={this.props.tier}
           tierAbout="Top 5%"
-          imageSrc={sample}
+          imageSrc={challenger}
         />
       );
     } else if (this.props.tier === MASTER) {
@@ -32,7 +39,7 @@ export class UserTierCardWrapper extends React.Component<
         <UserTierCard
           tierName={this.props.tier}
           tierAbout="Top 10%"
-          imageSrc={sample}
+          imageSrc={master}
         />
       );
     } else if (this.props.tier === DIAMOND) {
@@ -40,7 +47,7 @@ export class UserTierCardWrapper extends React.Component<
         <UserTierCard
           tierName={this.props.tier}
           tierAbout="Top 15%"
-          imageSrc={sample}
+          imageSrc={diamond}
         />
       );
     } else if (this.props.tier === PRATINUM) {
@@ -48,7 +55,7 @@ export class UserTierCardWrapper extends React.Component<
         <UserTierCard
           tierName={this.props.tier}
           tierAbout="Top 20%"
-          imageSrc={sample}
+          imageSrc={pratinum}
         />
       );
     } else if (this.props.tier === GOLD) {
@@ -56,7 +63,7 @@ export class UserTierCardWrapper extends React.Component<
         <UserTierCard
           tierName={this.props.tier}
           tierAbout="Top 30%"
-          imageSrc={sample}
+          imageSrc={gold}
         />
       );
     } else if (this.props.tier === SILVER) {
@@ -64,7 +71,7 @@ export class UserTierCardWrapper extends React.Component<
         <UserTierCard
           tierName={this.props.tier}
           tierAbout="Top 40%"
-          imageSrc={sample}
+          imageSrc={silver}
         />
       );
     } else {
@@ -72,7 +79,7 @@ export class UserTierCardWrapper extends React.Component<
         <UserTierCard
           tierName={this.props.tier}
           tierAbout="Under 40%"
-          imageSrc={sample}
+          imageSrc={bronze}
         />
       );
     }
