@@ -73,14 +73,6 @@ export class Top extends React.Component<TopProps, TopState> {
     });
   }
 
-  generate(element: React.ReactElement) {
-    return [0, 1, 2].map(value =>
-      React.cloneElement(element, {
-        key: value
-      })
-    );
-  }
-
   render() {
     const general = this.state.ranking.rankByLanguages.filter(
       t => t.language === GENERAL
