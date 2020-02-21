@@ -15,6 +15,7 @@ import { UserTierCardWrapper } from "../parts/UserTierCardWrapper";
 import { UserScoreDetail } from "../parts/UserScoreDetail";
 import { NOTFOUND } from "dns";
 import { UNSEARCHED } from "../../const/UtilCont";
+import Button from "@material-ui/core/Button";
 
 interface DetailProps extends RouteComponentProps<{}, {}, TopState> {
   userId: string;
@@ -45,6 +46,7 @@ export class Detail extends React.Component<DetailProps, DetailState> {
         mainLanguage: ""
       }
     };
+    this.backTop = this.backTop.bind(this);
   }
 
   componentDidMount() {
@@ -58,6 +60,11 @@ export class Detail extends React.Component<DetailProps, DetailState> {
     }
     getUserData(userId).then(res => {
       this.setState({ userDetail: res });
+    });
+  }
+  backTop() {
+    this.props.history.push({
+      pathname: "/"
     });
   }
 
@@ -84,7 +91,25 @@ export class Detail extends React.Component<DetailProps, DetailState> {
     }
     // 見つからなかった場合
     if (this.state.userDetail.userId === NOTFOUND) {
-      return <span>Not Match</span>;
+      return (
+        <Container>
+          <Box>
+            <Header />
+            <div>
+              <Box m={10}>
+                <Typography color="error" variant="h1" component="h6">
+                  Woops! Not Found!!
+                </Typography>
+              </Box>
+              <Box p={4}>
+                <Button variant="contained" onClick={this.backTop}>
+                  BACK TO TOP
+                </Button>
+              </Box>
+            </div>
+          </Box>
+        </Container>
+      );
     }
     return (
       <Container>
