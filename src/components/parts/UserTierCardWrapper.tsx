@@ -43,7 +43,7 @@ export class UserTierCardWrapper extends React.Component<
           imageSrc={sample}
         />
       );
-    } else if (this.props.tier === DIAMOND) {
+    } else if (this.props.tier === PRATINUM) {
       return (
         <UserTierCard
           tierName={this.props.tier}
@@ -51,7 +51,7 @@ export class UserTierCardWrapper extends React.Component<
           imageSrc={sample}
         />
       );
-    } else if (this.props.tier === PRATINUM) {
+    } else if (this.props.tier === GOLD) {
       return (
         <UserTierCard
           tierName={this.props.tier}
@@ -59,7 +59,7 @@ export class UserTierCardWrapper extends React.Component<
           imageSrc={sample}
         />
       );
-    } else if (this.props.tier === GOLD) {
+    } else if (this.props.tier === SILVER) {
       return (
         <UserTierCard
           tierName={this.props.tier}
@@ -67,19 +67,11 @@ export class UserTierCardWrapper extends React.Component<
           imageSrc={sample}
         />
       );
-    } else if (this.props.tier === SILVER) {
-      return (
-        <UserTierCard
-          tierName={this.props.tier}
-          tierAbout="Top 50%"
-          imageSrc={sample}
-        />
-      );
     } else {
       return (
         <UserTierCard
           tierName={this.props.tier}
-          tierAbout="Under 50%"
+          tierAbout="Under 40%"
           imageSrc={sample}
         />
       );

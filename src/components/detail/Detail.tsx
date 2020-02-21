@@ -5,7 +5,10 @@ import {
   Box,
   Container,
   CircularProgress,
-  Typography
+  Typography,
+  Grid,
+  Card,
+  CardContent
 } from "@material-ui/core";
 import { RouteComponentProps } from "react-router-dom";
 import { TopState } from "../top/Top";
@@ -16,6 +19,7 @@ import { UserScoreDetail } from "../parts/UserScoreDetail";
 import { NOTFOUND } from "dns";
 import { UNSEARCHED } from "../../const/UtilCont";
 import Button from "@material-ui/core/Button";
+import UpdateIcon from "@material-ui/icons/Update";
 
 interface DetailProps extends RouteComponentProps<{}, {}, TopState> {
   userId: string;
@@ -118,7 +122,31 @@ export class Detail extends React.Component<DetailProps, DetailState> {
           <UserProfileCard userDetail={this.state.userDetail} />
         </Box>
         <Box m={2}>
-          <UserTierCardWrapper tier={this.state.userDetail.tier} />
+          <Grid container>
+            <Grid item>
+              <UserTierCardWrapper tier={this.state.userDetail.tier} />
+            </Grid>
+            <Box ml={1}>
+              <Grid item>
+                <Card style={{ maxWidth: 270, display: "flex" }}>
+                  <CardContent>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      endIcon={<UpdateIcon>update</UpdateIcon>}
+                    >
+                      update
+                    </Button>
+                    <Box mt={3.5}>
+                      <Typography color="textSecondary">
+                        Last update :19/Feb
+                      </Typography>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Grid>
+            </Box>
+          </Grid>
         </Box>
         <Box m={2}>
           <UserScoreDetail userDetail={this.state.userDetail} />
