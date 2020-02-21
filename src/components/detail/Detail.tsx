@@ -15,7 +15,6 @@ interface DetailProps extends RouteComponentProps<{}, {}, TopState> {
 }
 interface DetailState {
   userDetail: UserDetailRes;
-  left: boolean;
 }
 
 // const useStyles = makeStyles({
@@ -41,7 +40,6 @@ export class Detail extends React.Component<DetailProps, DetailState> {
     super(props);
     console.log("constructor = ");
     this.state = {
-      left: false,
       userDetail: {
         userName: "",
         userId: "",
@@ -68,12 +66,6 @@ export class Detail extends React.Component<DetailProps, DetailState> {
     this.getUserDetail(userId);
   }
 
-  toggleDrawer = (open: boolean) => () => {
-    this.setState({
-      left: open
-    });
-  };
-
   getUserDetail(userId: string) {
     getUserData(userId).then(res => {
       console.log("state :" + res);
@@ -88,7 +80,7 @@ export class Detail extends React.Component<DetailProps, DetailState> {
       return <span>Not Match</span>;
     }
     return (
-      <Container fixed>
+      <Container>
         <Header />
         <Box m={2}>
           <UserProfileCard userDetail={this.state.userDetail} />
