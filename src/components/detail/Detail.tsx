@@ -7,8 +7,7 @@ import {
   CircularProgress,
   Typography,
   Grid,
-  Card,
-  CardContent
+  Snackbar
 } from "@material-ui/core";
 import { RouteComponentProps } from "react-router-dom";
 import { TopState } from "../top/Top";
@@ -19,14 +18,16 @@ import { UserScoreDetail } from "../parts/UserScoreDetail";
 import { NOTFOUND } from "dns";
 import { UNSEARCHED } from "../../const/UtilCont";
 import Button from "@material-ui/core/Button";
-import UpdateIcon from "@material-ui/icons/Update";
 import { UserUpdateCard } from "../parts/UserUpdateCard";
+import Alert from "@material-ui/lab/Alert";
+import { convertDate } from "../../util/DateUtill";
 
 interface DetailProps extends RouteComponentProps<{}, {}, TopState> {
   userId: string;
 }
 interface DetailState {
   userDetail: UserDetailRes;
+  openDialog: boolean;
 }
 
 export class Detail extends React.Component<DetailProps, DetailState> {
@@ -51,7 +52,8 @@ export class Detail extends React.Component<DetailProps, DetailState> {
         watchersCountTotal: 0,
         mainLanguage: "",
         lastupdateDate: new Date()
-      }
+      },
+      openDialog: false
     };
     this.backTop = this.backTop.bind(this);
     this.onClickUpdateButton = this.onClickUpdateButton.bind(this);
@@ -72,6 +74,16 @@ export class Detail extends React.Component<DetailProps, DetailState> {
   }
 
   onClickUpdateButton() {
+    // 今日更新したばかりなら更新せずにメッセージをだす
+    if (
+      new Date(
+        this.state.userDetail.lastupdateDate.toString()
+      ).toLocaleDateString() === new Date().toLocaleDateString()
+    ) {
+      this.setState({ openDialog: true });
+      return;
+    }
+
     this.updateUserDetail(this.state.userDetail.userId);
   }
 
@@ -91,6 +103,13 @@ export class Detail extends React.Component<DetailProps, DetailState> {
       pathname: "/"
     });
   }
+
+  dialogClose = (event?: React.SyntheticEvent, reason?: string) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    this.setState({ openDialog: false });
+  };
 
   render() {
     // ロード中
@@ -175,6 +194,11 @@ export class Detail extends React.Component<DetailProps, DetailState> {
         <Box m={2}>
           <UserScoreDetail userDetail={this.state.userDetail} />
         </Box>
+        <Snackbar open={this.state.openDialog} autoHideDuration={6000}>
+          <Alert onClose={this.dialogClose} severity="error">
+            Just updated today !
+          </Alert>
+        </Snackbar>
       </Container>
     );
   }

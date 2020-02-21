@@ -24,7 +24,7 @@ import {
   GO
 } from "../../const/Language";
 import { RankingList } from "../parts/RankingList";
-import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
+import Alert from "@material-ui/lab/Alert";
 
 interface TopProps extends RouteComponentProps<{}> {
   screenName: string;
@@ -34,9 +34,6 @@ export interface TopState {
   userId: string;
   dialogOpen: boolean;
   ranking: RankgByLanguageRes;
-}
-function Alert(props: AlertProps) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
 export class Top extends React.Component<TopProps, TopState> {
