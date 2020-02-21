@@ -10,12 +10,8 @@ import {
   ListItem,
   ListItemText,
   List,
-  Drawer,
-  makeStyles,
-  createStyles,
-  Theme
+  Drawer
 } from "@material-ui/core";
-import { width } from "@material-ui/system";
 
 interface HeaderState {
   left: boolean;

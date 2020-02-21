@@ -90,21 +90,15 @@ export async function existsUser(userId: string) {
 }
 
 export async function getUserData(userId: string) {
-  console.log("pre");
   const exists = await existsUser(userId);
-  console.log("exists = " + exists);
 
   if (exists.exists) {
-    console.log("exists");
     const detail = await getUserDetail(userId);
-    console.log("detail :" + detail.userId);
     return detail;
   } else {
-    console.log("not exists");
     const userRes = await getUser(userId);
     await entryUser(userRes);
     const detail = await getUserDetail(userId);
-    console.log("detail :" + detail.userId);
     return detail;
   }
 }

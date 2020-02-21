@@ -2,10 +2,7 @@ const wrap = <T>(task: Promise<Response>): Promise<T> => {
   return new Promise((resolve, reject) => {
     task
       .then(response => {
-        console.log("response");
         if (response.ok) {
-          console.log("ok");
-          console.log(response);
           response
             .json()
             .then(json => {

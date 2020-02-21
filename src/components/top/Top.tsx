@@ -1,17 +1,6 @@
 import React, { ChangeEvent } from "react";
 import Button from "@material-ui/core/Button";
-import {
-  TextField,
-  Container,
-  Box,
-  Typography,
-  Grid,
-  List,
-  ListItem,
-  ListItemAvatar,
-  Avatar,
-  ListItemText
-} from "@material-ui/core";
+import { TextField, Container, Box, Typography, Grid } from "@material-ui/core";
 import { Header } from "../parts/Header";
 import { RouteComponentProps } from "react-router-dom";
 import { getRanks } from "../../external/GetRanks";
@@ -27,8 +16,6 @@ import {
   RUBY,
   GO
 } from "../../const/Language";
-import { textAlign } from "@material-ui/system";
-import { RankingListItem } from "../parts/RankingListItem";
 import { RankingList } from "../parts/RankingList";
 
 interface TopProps extends RouteComponentProps<{}> {
@@ -69,15 +56,7 @@ export class Top extends React.Component<TopProps, TopState> {
 
   getRanking() {
     getRanks().then(res => {
-      console.log("state :" + res);
       this.setState({ userId: "", ranking: res });
-      console.log(
-        "ranking :" +
-          res.rankByLanguages.map(elm => {
-            console.log(elm.language);
-          })
-      );
-      console.log("this.state.userId :" + this.state.userId);
     });
   }
 

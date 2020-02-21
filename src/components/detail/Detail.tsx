@@ -1,7 +1,6 @@
 import React from "react";
 import { UserDetailRes } from "../../external/data/UserDetailRes";
 import { getUserData } from "../../external/GetUser";
-import { makeStyles } from "@material-ui/core/styles";
 import { Box, Container } from "@material-ui/core";
 import { RouteComponentProps } from "react-router-dom";
 import { TopState } from "../top/Top";
@@ -17,28 +16,9 @@ interface DetailState {
   userDetail: UserDetailRes;
 }
 
-// const useStyles = makeStyles({
-//   root: {
-//     minWidth: 275
-//   },
-//   bullet: {
-//     display: "inline-block",
-//     margin: "0 2px",
-//     transform: "scale(0.8)"
-//   },
-//   title: {
-//     fontSize: 14
-//   },
-//   pos: {
-//     marginBottom: 12
-//   }
-// });
-// const classes = useStyles();
-
 export class Detail extends React.Component<DetailProps, DetailState> {
   constructor(props: DetailProps) {
     super(props);
-    console.log("constructor = ");
     this.state = {
       userDetail: {
         userName: "",
@@ -62,16 +42,12 @@ export class Detail extends React.Component<DetailProps, DetailState> {
 
   componentDidMount() {
     const userId = this.props.location.state.userId;
-    console.log("userId = " + userId);
     this.getUserDetail(userId);
   }
 
   getUserDetail(userId: string) {
     getUserData(userId).then(res => {
-      console.log("state :" + res);
       this.setState({ userDetail: res });
-      console.log("this.state.userId :" + this.state.userDetail.userId);
-      console.log("this.state.avatarUrl :" + this.state.userDetail.avatarUrl);
     });
   }
 

@@ -1,6 +1,5 @@
 import React from "react";
 import { UserMinimumInformation } from "../../external/data/UserMinimumInformation";
-import { RouteComponentProps } from "react-router-dom";
 import {
   ListItem,
   ListItemAvatar,

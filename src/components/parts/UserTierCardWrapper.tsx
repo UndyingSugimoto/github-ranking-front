@@ -1,6 +1,4 @@
-import { UserDetailRes } from "../../external/data/UserDetailRes";
 import React from "react";
-import { Card, CardMedia, CardContent, Typography } from "@material-ui/core";
 import sample from "../../static/sample.png";
 import {
   CHALLENGER,
@@ -8,7 +6,6 @@ import {
   DIAMOND,
   PRATINUM,
   GOLD,
-  BRONZE,
   SILVER
 } from "../../const/Tier";
 import { UserTierCard } from "./UserTierCard";
