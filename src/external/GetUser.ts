@@ -46,10 +46,24 @@ export async function getUser(loginUserId: String) {
   `;
   return await AppClient.query({
     query
-  }).then(function(result: ApolloQueryResult<GetUserRes>) {
-    result.data.user.userId = loginUserId;
-    return result.data;
-  });
+  })
+    .then(function(result: ApolloQueryResult<GetUserRes>) {
+      result.data.user.userId = loginUserId;
+      return result.data;
+    })
+    .catch(t => {
+      const res: GetUserRes = {
+        user: {
+          userId: "",
+          avatarUrl: "",
+          repositories: { nodes: [], totalCount: 0 },
+          followers: { totalCount: 0 },
+          pullRequests: { totalCount: 0 },
+          issues: { totalCount: 0 }
+        }
+      };
+      return res;
+    });
 }
 
 export async function entryUser(user: GetUserRes) {
