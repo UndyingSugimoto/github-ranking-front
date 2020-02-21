@@ -3,6 +3,7 @@ export interface GetUserRes {
 }
 export interface User {
   userId: String;
+  url: String;
   avatarUrl: String;
   repositories: Repositories;
   followers: Followers;

@@ -3,4 +3,5 @@ export interface UserMinimumInformation {
   score: Number;
   mainLanguage: string;
   avatarUrl: string;
+  githubUrl: string;
 }

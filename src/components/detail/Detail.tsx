@@ -36,6 +36,7 @@ export class Detail extends React.Component<DetailProps, DetailState> {
         userName: "",
         userId: UNSEARCHED,
         avatarUrl: "",
+        githubUrl: "",
         tier: "",
         rank: 0,
         score: 0,
@@ -47,7 +48,8 @@ export class Detail extends React.Component<DetailProps, DetailState> {
         forksCountTotal: 0,
         stargazerCountTotal: 0,
         watchersCountTotal: 0,
-        mainLanguage: ""
+        mainLanguage: "",
+        lastupdateDate: new Date()
       }
     };
     this.backTop = this.backTop.bind(this);

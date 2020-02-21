@@ -12,6 +12,7 @@ export async function getUser(loginUserId: String) {
     {
         user(login: "${loginUserId}") {
           avatarUrl
+          url
           repositories(first:100,ownerAffiliations:OWNER,orderBy:{field: STARGAZERS,direction:DESC}) {
             nodes {
               id
@@ -57,6 +58,7 @@ export async function getUser(loginUserId: String) {
         user: {
           userId: "",
           avatarUrl: "",
+          url: "",
           repositories: { nodes: [], totalCount: 0 },
           followers: { totalCount: 0 },
           pullRequests: { totalCount: 0 },
@@ -115,11 +117,11 @@ export async function getUserData(userId: string) {
 
     // 見つからなかった場合
     if (userRes.user.avatarUrl === "") {
-      console.log("ex");
       let res: UserDetailRes = {
         userName: "",
         userId: NOTFOUND,
         avatarUrl: "",
+        githubUrl: "",
         tier: "",
         rank: 0,
         score: 0,
@@ -131,7 +133,8 @@ export async function getUserData(userId: string) {
         forksCountTotal: 0,
         stargazerCountTotal: 0,
         watchersCountTotal: 0,
-        mainLanguage: ""
+        mainLanguage: "",
+        lastupdateDate: new Date()
       };
       return res;
     }
