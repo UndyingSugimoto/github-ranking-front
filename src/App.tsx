@@ -12,23 +12,4 @@ const App = () => (
   </BrowserRouter>
 );
 
-const Home = () => (
-  <div>
-    <h2>Home</h2>
-    <p>Welcome to ようこそ</p>
-  </div>
-);
-const About = () => (
-  <div>
-    <h2>About</h2>
-    <p>フレンズに投票するページです</p>
-  </div>
-);
-const Friends = () => (
-  <div>
-    <h2>Friends</h2>
-    <p>ここにフレンズのリストを書きます</p>
-  </div>
-);
-
 export default App;
