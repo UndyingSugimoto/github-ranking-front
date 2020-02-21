@@ -1,13 +1,20 @@
 import React from "react";
 import { UserDetailRes } from "../../external/data/UserDetailRes";
 import { getUserData } from "../../external/GetUser";
-import { Box, Container } from "@material-ui/core";
+import {
+  Box,
+  Container,
+  CircularProgress,
+  Typography
+} from "@material-ui/core";
 import { RouteComponentProps } from "react-router-dom";
 import { TopState } from "../top/Top";
 import { Header } from "../parts/Header";
 import { UserProfileCard } from "../parts/UserProfileCard";
 import { UserTierCardWrapper } from "../parts/UserTierCardWrapper";
 import { UserScoreDetail } from "../parts/UserScoreDetail";
+import { NOTFOUND } from "dns";
+import { UNSEARCHED } from "../../const/UtilCont";
 
 interface DetailProps extends RouteComponentProps<{}, {}, TopState> {
   userId: string;
@@ -22,7 +29,7 @@ export class Detail extends React.Component<DetailProps, DetailState> {
     this.state = {
       userDetail: {
         userName: "",
-        userId: "",
+        userId: UNSEARCHED,
         avatarUrl: "",
         tier: "",
         rank: 0,
@@ -46,13 +53,37 @@ export class Detail extends React.Component<DetailProps, DetailState> {
   }
 
   getUserDetail(userId: string) {
+    if (userId === "" || userId === null || userId === undefined) {
+      return;
+    }
     getUserData(userId).then(res => {
       this.setState({ userDetail: res });
     });
   }
 
   render() {
-    if (this.state.userDetail.userId === null) {
+    // ロード中
+    if (this.state.userDetail.userId === UNSEARCHED) {
+      return (
+        <Container>
+          <Box>
+            <Header />
+            <div>
+              <Box p={2}>
+                <Typography color="primary" variant="h6" component="h6">
+                  Now Loading...
+                </Typography>
+              </Box>
+              <Box p={2}>
+                <CircularProgress />
+              </Box>
+            </div>
+          </Box>
+        </Container>
+      );
+    }
+    // 見つからなかった場合
+    if (this.state.userDetail.userId === NOTFOUND) {
       return <span>Not Match</span>;
     }
     return (

@@ -17,7 +17,7 @@ export class RankingList extends React.Component<RankingListProps, {}> {
         <div>
           <List>
             {this.props.ranksByLanguage.userInfomations.map((t, index) => (
-              <RankingListItem user={t} rank={index + 1} />
+              <RankingListItem key={t.userId} user={t} rank={index + 1} />
             ))}
           </List>
         </div>

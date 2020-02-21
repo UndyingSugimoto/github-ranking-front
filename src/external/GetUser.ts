@@ -5,6 +5,7 @@ import { ApolloQueryResult } from "apollo-boost";
 import fetcher from "../util/Fetcher";
 import { UserDetailRes } from "./data/UserDetailRes";
 import { UserExistsRes } from "./data/UserExistsRes";
+import { NOTFOUND } from "dns";
 
 export async function getUser(loginUserId: String) {
   const query = gql`
@@ -111,6 +112,30 @@ export async function getUserData(userId: string) {
     return detail;
   } else {
     const userRes = await getUser(userId);
+
+    // 見つからなかった場合
+    if (userRes.user.avatarUrl === "") {
+      console.log("ex");
+      let res: UserDetailRes = {
+        userName: "",
+        userId: NOTFOUND,
+        avatarUrl: "",
+        tier: "",
+        rank: 0,
+        score: 0,
+        currentNumber: 0,
+        followersCount: 0,
+        issuesCount: 0,
+        pullRequestCount: 0,
+        repositoriesCount: 0,
+        forksCountTotal: 0,
+        stargazerCountTotal: 0,
+        watchersCountTotal: 0,
+        mainLanguage: ""
+      };
+      return res;
+    }
+    // 見つかった場合はDB保存
     await entryUser(userRes);
     const detail = await getUserDetail(userId);
     return detail;
