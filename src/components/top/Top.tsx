@@ -14,6 +14,8 @@ import {
 } from "@material-ui/core";
 import { Header } from "../parts/Header";
 import { RouteComponentProps } from "react-router-dom";
+import { getRanks } from "../../external/GetRanks";
+import { RankgByLanguageRes } from "../../external/data/RanksByLanguageRes";
 
 interface TopProps extends RouteComponentProps<{}> {
   screenName: string;
@@ -21,14 +23,33 @@ interface TopProps extends RouteComponentProps<{}> {
 
 export interface TopState {
   userId: string;
+  ranking: RankgByLanguageRes;
 }
 
 export class Top extends React.Component<TopProps, TopState> {
   constructor(props: TopProps, state: TopState) {
     super(props);
-    this.state = { userId: "" };
+    this.state = { userId: "", ranking: { rankByLanguages: [] } };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount() {
+    this.getRanking();
+  }
+
+  getRanking() {
+    getRanks().then(res => {
+      console.log("state :" + res);
+      this.setState({ userId: "", ranking: res });
+      console.log(
+        "ranking :" +
+          res.rankByLanguages.map(elm => {
+            console.log(elm.language);
+          })
+      );
+      console.log("this.state.userId :" + this.state.userId);
+    });
   }
 
   handleClick() {
