@@ -23,9 +23,15 @@ import {
 import { RouteComponentProps } from "react-router-dom";
 import { TopState } from "../top/Top";
 import { Header } from "../parts/Header";
+import { UserProfileCard } from "../parts/UserProfileCard";
+import { UserTierCardWrapper } from "../parts/UserTierCardWrapper";
 
 interface DetailProps extends RouteComponentProps<{}, {}, TopState> {
   userId: string;
+}
+interface DetailState {
+  userDetail: UserDetailRes;
+  left: boolean;
 }
 
 // const useStyles = makeStyles({
@@ -46,12 +52,30 @@ interface DetailProps extends RouteComponentProps<{}, {}, TopState> {
 // });
 // const classes = useStyles();
 
-export class Detail extends React.Component<DetailProps, UserDetailRes> {
-  constructor(props: DetailProps, state: UserDetailRes) {
+export class Detail extends React.Component<DetailProps, DetailState> {
+  constructor(props: DetailProps) {
     super(props);
     console.log("constructor = ");
-    console.log("state :" + state);
-    this.state = state;
+    this.state = {
+      left: false,
+      userDetail: {
+        userName: "",
+        userId: "",
+        avatarUrl: "",
+        tier: "",
+        rank: 0,
+        score: 0,
+        currentNumber: 0,
+        followersCount: 0,
+        issuesCount: 0,
+        pullRequestCount: 0,
+        repositoriesCount: 0,
+        forksCountTotal: 0,
+        stargazerCountTotal: 0,
+        watchersCountTotal: 0,
+        mainLanguage: ""
+      }
+    };
   }
 
   componentDidMount() {
@@ -60,47 +84,34 @@ export class Detail extends React.Component<DetailProps, UserDetailRes> {
     this.getUserDetail(userId);
   }
 
+  toggleDrawer = (open: boolean) => () => {
+    this.setState({
+      left: open
+    });
+  };
+
   getUserDetail(userId: string) {
     getUserData(userId).then(res => {
       console.log("state :" + res);
-      this.setState(res);
-      console.log("this.state.userId :" + this.state.userId);
-      console.log("this.state.avatarUrl :" + this.state.avatarUrl);
+      this.setState({ userDetail: res });
+      console.log("this.state.userId :" + this.state.userDetail.userId);
+      console.log("this.state.avatarUrl :" + this.state.userDetail.avatarUrl);
     });
   }
 
   render() {
-    if (this.state.userId === null) {
+    if (this.state.userDetail.userId === null) {
       return <span>Not Match</span>;
     }
     return (
       <Container fixed>
         <Header />
         <Box m={2}>
-          <Card style={{ maxWidth: 600, display: "flex" }}>
-            <CardMedia
-              src={this.state.avatarUrl}
-              component="img"
-              style={{ width: 100, margin: 15 }}
-            ></CardMedia>
-            <CardContent>
-              <Typography variant="h6" component="h6">
-                ID : {this.state.userId}
-              </Typography>
-              <Typography color="textSecondary">
-                Rank : {this.state.rank}/{this.state.currentNumber}
-              </Typography>
-              <Typography color="textSecondary">
-                Score : {this.state.score}
-              </Typography>
-              <Typography color="textSecondary">
-                MainLanguage : {this.state.mainLanguage}
-              </Typography>
-            </CardContent>
-          </Card>
+          <UserProfileCard userDetail={this.state.userDetail} />
         </Box>
         <Box m={2}>
-          <Card style={{ maxWidth: 270, display: "flex" }}>
+          <UserTierCardWrapper tier={this.state.userDetail.tier} />
+          {/* <Card style={{ maxWidth: 270, display: "flex" }}>
             <CardMedia
               image={sample}
               component="img"
@@ -112,7 +123,7 @@ export class Detail extends React.Component<DetailProps, UserDetailRes> {
               </Typography>
               <Typography color="textSecondary">Top 5%</Typography>
             </CardContent>
-          </Card>
+          </Card> */}
         </Box>
         <Box m={2}>
           <TableContainer component={Paper}>
@@ -133,23 +144,25 @@ export class Detail extends React.Component<DetailProps, UserDetailRes> {
                 <TableRow>
                   <TableCell component="th" scope="row"></TableCell>
                   <TableCell align="right">
-                    {this.state.followersCount}
-                  </TableCell>
-                  <TableCell align="right">{this.state.issuesCount}</TableCell>
-                  <TableCell align="right">
-                    {this.state.pullRequestCount}
+                    {this.state.userDetail.followersCount}
                   </TableCell>
                   <TableCell align="right">
-                    {this.state.repositoriesCount}
+                    {this.state.userDetail.issuesCount}
                   </TableCell>
                   <TableCell align="right">
-                    {this.state.forksCountTotal}
+                    {this.state.userDetail.pullRequestCount}
                   </TableCell>
                   <TableCell align="right">
-                    {this.state.stargazerCountTotal}
+                    {this.state.userDetail.repositoriesCount}
                   </TableCell>
                   <TableCell align="right">
-                    {this.state.watchersCountTotal}
+                    {this.state.userDetail.forksCountTotal}
+                  </TableCell>
+                  <TableCell align="right">
+                    {this.state.userDetail.stargazerCountTotal}
+                  </TableCell>
+                  <TableCell align="right">
+                    {this.state.userDetail.watchersCountTotal}
                   </TableCell>
                 </TableRow>
               </TableBody>
