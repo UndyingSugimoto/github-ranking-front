@@ -10,7 +10,10 @@ import {
   ListItem,
   ListItemText,
   List,
-  Drawer
+  Drawer,
+  makeStyles,
+  createStyles,
+  Theme
 } from "@material-ui/core";
 import { width } from "@material-ui/system";
 
@@ -39,7 +42,7 @@ export class Header extends React.Component<HeaderProps, HeaderState> {
         <List>
           <Link to="/">
             <ListItem button>
-              <ListItemText primary="Top" />
+              <ListItemText primary="Back to Top" />
             </ListItem>
           </Link>
         </List>
@@ -59,6 +62,7 @@ export class Header extends React.Component<HeaderProps, HeaderState> {
           </IconButton>
           <Drawer open={this.state.left} onClose={this.toggleDrawer(false)}>
             <div
+              style={{ width: 145 }}
               tabIndex={0}
               role="button"
               onClick={this.toggleDrawer(false)}
