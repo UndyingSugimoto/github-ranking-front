@@ -1,6 +1,6 @@
 import React from "react";
 import { UserDetailRes } from "../../external/data/UserDetailRes";
-import { getUserData } from "../../external/GetUser";
+import { getUserData, updateUserData } from "../../external/ControllUser";
 import {
   Box,
   Container,
@@ -20,6 +20,7 @@ import { NOTFOUND } from "dns";
 import { UNSEARCHED } from "../../const/UtilCont";
 import Button from "@material-ui/core/Button";
 import UpdateIcon from "@material-ui/icons/Update";
+import { UserUpdateCard } from "../parts/UserUpdateCard";
 
 interface DetailProps extends RouteComponentProps<{}, {}, TopState> {
   userId: string;
@@ -53,6 +54,7 @@ export class Detail extends React.Component<DetailProps, DetailState> {
       }
     };
     this.backTop = this.backTop.bind(this);
+    this.onClickUpdateButton = this.onClickUpdateButton.bind(this);
   }
 
   componentDidMount() {
@@ -68,6 +70,22 @@ export class Detail extends React.Component<DetailProps, DetailState> {
       this.setState({ userDetail: res });
     });
   }
+
+  onClickUpdateButton() {
+    this.updateUserDetail(this.state.userDetail.userId);
+  }
+
+  updateUserDetail(userId: string) {
+    if (userId === "" || userId === null || userId === undefined) {
+      return;
+    }
+
+    // TODO ここに最終更新日が今日だったら更新しないでアラートをだすようにロジック書く
+    updateUserData(userId).then(res => {
+      this.setState({ userDetail: res });
+    });
+  }
+
   backTop() {
     this.props.history.push({
       pathname: "/"
@@ -130,7 +148,11 @@ export class Detail extends React.Component<DetailProps, DetailState> {
             </Grid>
             <Box ml={1}>
               <Grid item>
-                <Card style={{ maxWidth: 270, display: "flex" }}>
+                <UserUpdateCard
+                  lastupdateDate={new Date()}
+                  onClickUpdateButton={this.onClickUpdateButton}
+                />
+                {/* <Card style={{ maxWidth: 270, display: "flex" }}>
                   <CardContent>
                     <Button
                       variant="contained"
@@ -145,7 +167,7 @@ export class Detail extends React.Component<DetailProps, DetailState> {
                       </Typography>
                     </Box>
                   </CardContent>
-                </Card>
+                </Card> */}
               </Grid>
             </Box>
           </Grid>

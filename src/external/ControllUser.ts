@@ -7,7 +7,7 @@ import { UserDetailRes } from "./data/UserDetailRes";
 import { UserExistsRes } from "./data/UserExistsRes";
 import { NOTFOUND } from "dns";
 
-export async function getUser(loginUserId: String) {
+async function getUser(loginUserId: String) {
   const query = gql`
     {
         user(login: "${loginUserId}") {
@@ -69,9 +69,23 @@ export async function getUser(loginUserId: String) {
     });
 }
 
-export async function entryUser(user: GetUserRes) {
+async function entryUser(user: GetUserRes) {
   const endpoint = process.env.REACT_APP_BACKEND_ENDPOINT as string;
-  const url = "/github-ranking/userentry";
+  const url = "/github-ranking/user/entry";
+
+  await fetcher(endpoint + url, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    method: "POST",
+    body: JSON.stringify(user)
+  });
+}
+
+async function updateUser(user: GetUserRes) {
+  const endpoint = process.env.REACT_APP_BACKEND_ENDPOINT as string;
+  const url = "/github-ranking/user/update";
 
   await fetcher(endpoint + url, {
     headers: {
@@ -143,4 +157,11 @@ export async function getUserData(userId: string) {
     const detail = await getUserDetail(userId);
     return detail;
   }
+}
+
+export async function updateUserData(userId: string) {
+  const userRes = await getUser(userId);
+  await updateUser(userRes);
+  const detail = await getUserDetail(userId);
+  return detail;
 }
