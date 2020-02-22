@@ -1,6 +1,12 @@
 import { UserDetailRes } from "../../external/data/UserDetailRes";
 import React from "react";
-import { Card, CardMedia, CardContent, Typography } from "@material-ui/core";
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  Link
+} from "@material-ui/core";
 
 interface UserProfileCardProps {
   userDetail: UserDetailRes;
@@ -24,11 +30,9 @@ export class UserProfileCard extends React.Component<UserProfileCardProps, {}> {
             {this.props.userDetail.currentNumber}
           </Typography>
           <Typography color="textSecondary">
-            Score : {this.props.userDetail.score}
-          </Typography>
-          <Typography color="textSecondary">
             MainLanguage : {this.props.userDetail.mainLanguage}
           </Typography>
+          <Link href={this.props.userDetail.githubUrl}>GitHub Home</Link>
         </CardContent>
       </Card>
     );

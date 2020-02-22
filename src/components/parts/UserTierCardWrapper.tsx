@@ -19,6 +19,7 @@ import { UserTierCard } from "./UserTierCard";
 
 interface UserTierCardWrapperProps {
   tier: string;
+  score: Number;
 }
 
 export class UserTierCardWrapper extends React.Component<
@@ -32,6 +33,7 @@ export class UserTierCardWrapper extends React.Component<
           tierName={this.props.tier}
           tierAbout="Top 5%"
           imageSrc={challenger}
+          score={this.props.score}
         />
       );
     } else if (this.props.tier === MASTER) {
@@ -40,6 +42,7 @@ export class UserTierCardWrapper extends React.Component<
           tierName={this.props.tier}
           tierAbout="Top 10%"
           imageSrc={master}
+          score={this.props.score}
         />
       );
     } else if (this.props.tier === DIAMOND) {
@@ -48,6 +51,7 @@ export class UserTierCardWrapper extends React.Component<
           tierName={this.props.tier}
           tierAbout="Top 15%"
           imageSrc={diamond}
+          score={this.props.score}
         />
       );
     } else if (this.props.tier === PRATINUM) {
@@ -56,6 +60,7 @@ export class UserTierCardWrapper extends React.Component<
           tierName={this.props.tier}
           tierAbout="Top 20%"
           imageSrc={pratinum}
+          score={this.props.score}
         />
       );
     } else if (this.props.tier === GOLD) {
@@ -64,6 +69,7 @@ export class UserTierCardWrapper extends React.Component<
           tierName={this.props.tier}
           tierAbout="Top 30%"
           imageSrc={gold}
+          score={this.props.score}
         />
       );
     } else if (this.props.tier === SILVER) {
@@ -72,6 +78,7 @@ export class UserTierCardWrapper extends React.Component<
           tierName={this.props.tier}
           tierAbout="Top 40%"
           imageSrc={silver}
+          score={this.props.score}
         />
       );
     } else {
@@ -80,6 +87,7 @@ export class UserTierCardWrapper extends React.Component<
           tierName={this.props.tier}
           tierAbout="Under 40%"
           imageSrc={bronze}
+          score={this.props.score}
         />
       );
     }

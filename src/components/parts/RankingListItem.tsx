@@ -10,12 +10,22 @@ import {
 interface RankingListItemProps {
   rank: Number;
   user: UserMinimumInformation;
+  itemClickCallback: Function;
 }
 
 export class RankingListItem extends React.Component<RankingListItemProps, {}> {
+  constructor(props: RankingListItemProps) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.props.itemClickCallback(this.props.user.userId);
+  }
+
   render() {
     return (
-      <ListItem>
+      <ListItem onClick={this.handleClick} style={{ cursor: "pointer" }}>
         <ListItemAvatar>
           <Avatar
             alt={this.props.user.userId}

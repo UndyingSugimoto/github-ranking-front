@@ -5,6 +5,7 @@ import { RankingListItem } from "./RankingListItem";
 
 interface RankingListProps {
   ranksByLanguage: RanksByLanguage;
+  itemClickCallback: Function;
 }
 
 export class RankingList extends React.Component<RankingListProps, {}> {
@@ -17,7 +18,12 @@ export class RankingList extends React.Component<RankingListProps, {}> {
         <div>
           <List>
             {this.props.ranksByLanguage.userInfomations.map((t, index) => (
-              <RankingListItem key={t.userId} user={t} rank={index + 1} />
+              <RankingListItem
+                key={t.userId}
+                user={t}
+                rank={index + 1}
+                itemClickCallback={this.props.itemClickCallback}
+              />
             ))}
           </List>
         </div>

@@ -20,7 +20,6 @@ import { UNSEARCHED } from "../../const/UtilCont";
 import Button from "@material-ui/core/Button";
 import { UserUpdateCard } from "../parts/UserUpdateCard";
 import Alert from "@material-ui/lab/Alert";
-import { convertDate } from "../../util/DateUtill";
 
 interface DetailProps extends RouteComponentProps<{}, {}, TopState> {
   userId: string;
@@ -163,7 +162,10 @@ export class Detail extends React.Component<DetailProps, DetailState> {
         <Box m={2}>
           <Grid container>
             <Grid item>
-              <UserTierCardWrapper tier={this.state.userDetail.tier} />
+              <UserTierCardWrapper
+                tier={this.state.userDetail.tier}
+                score={this.state.userDetail.score}
+              />
             </Grid>
             <Box ml={1}>
               <Grid item>

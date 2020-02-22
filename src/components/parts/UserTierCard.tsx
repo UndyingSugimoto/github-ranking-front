@@ -5,6 +5,7 @@ interface UserTierCardProps {
   tierName: string;
   tierAbout: string;
   imageSrc: string;
+  score: Number;
 }
 
 export class UserTierCard extends React.Component<UserTierCardProps, {}> {
@@ -19,6 +20,9 @@ export class UserTierCard extends React.Component<UserTierCardProps, {}> {
         <CardContent>
           <Typography color="primary" variant="h6" component="h6">
             {this.props.tierName}
+          </Typography>
+          <Typography color="textSecondary">
+            Score : {this.props.score}
           </Typography>
           <Typography color="textSecondary">{this.props.tierAbout}</Typography>
         </CardContent>

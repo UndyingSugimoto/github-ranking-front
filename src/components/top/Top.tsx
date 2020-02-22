@@ -58,6 +58,7 @@ export class Top extends React.Component<TopProps, TopState> {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.moveDetailLogic = this.moveDetailLogic.bind(this);
   }
 
   dialogClose = (event?: React.SyntheticEvent, reason?: string) => {
@@ -82,10 +83,13 @@ export class Top extends React.Component<TopProps, TopState> {
       this.setState({ dialogOpen: true });
       return;
     }
+    this.moveDetailLogic(this.state.userId);
+  }
 
+  moveDetailLogic(userId: String) {
     this.props.history.push({
       pathname: "/detail",
-      state: { userId: this.state.userId }
+      state: { userId: userId }
     });
   }
 
@@ -150,23 +154,50 @@ export class Top extends React.Component<TopProps, TopState> {
           </Box>
           <Box m={10}>
             <Grid container spacing={2}>
-              <RankingList ranksByLanguage={general} />
-              <RankingList ranksByLanguage={javascript} />
-              <RankingList ranksByLanguage={python} />
+              <RankingList
+                ranksByLanguage={general}
+                itemClickCallback={this.moveDetailLogic}
+              />
+              <RankingList
+                ranksByLanguage={javascript}
+                itemClickCallback={this.moveDetailLogic}
+              />
+              <RankingList
+                ranksByLanguage={python}
+                itemClickCallback={this.moveDetailLogic}
+              />
             </Grid>
           </Box>
           <Box m={10}>
             <Grid container spacing={2}>
-              <RankingList ranksByLanguage={java} />
-              <RankingList ranksByLanguage={csharp} />
-              <RankingList ranksByLanguage={php} />
+              <RankingList
+                ranksByLanguage={java}
+                itemClickCallback={this.moveDetailLogic}
+              />
+              <RankingList
+                ranksByLanguage={csharp}
+                itemClickCallback={this.moveDetailLogic}
+              />
+              <RankingList
+                ranksByLanguage={php}
+                itemClickCallback={this.moveDetailLogic}
+              />
             </Grid>
           </Box>
           <Box m={10}>
             <Grid container spacing={2}>
-              <RankingList ranksByLanguage={cplus} />
-              <RankingList ranksByLanguage={ruby} />
-              <RankingList ranksByLanguage={go} />
+              <RankingList
+                ranksByLanguage={cplus}
+                itemClickCallback={this.moveDetailLogic}
+              />
+              <RankingList
+                ranksByLanguage={ruby}
+                itemClickCallback={this.moveDetailLogic}
+              />
+              <RankingList
+                ranksByLanguage={go}
+                itemClickCallback={this.moveDetailLogic}
+              />
             </Grid>
           </Box>
           <Snackbar open={this.state.dialogOpen} autoHideDuration={6000}>
