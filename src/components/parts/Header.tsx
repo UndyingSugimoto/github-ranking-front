@@ -13,7 +13,7 @@ import {
   Drawer
 } from "@material-ui/core";
 
-interface HeaderState {
+export interface HeaderState {
   left: boolean;
 }
 interface HeaderProps {}

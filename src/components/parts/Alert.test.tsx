@@ -1,6 +1,6 @@
-import { shallow, mount, render } from "enzyme";
+import { shallow } from "enzyme";
 import { Alert } from "./Alert";
-import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
+import MuiAlert from "@material-ui/lab/Alert";
 
 import React from "react";
 
