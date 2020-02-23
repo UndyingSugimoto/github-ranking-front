@@ -1,5 +1,5 @@
 import { UNSEARCHED } from "../../const/UtilCont";
-import { getUserData, updateUserData } from "../../external/ControllUser";
+import ControllUser from "../../external/ControllUser";
 import { Detail } from "./Detail";
 import { mount } from "enzyme";
 import React from "react";
@@ -58,7 +58,6 @@ describe("Detail", () => {
     //   expect(wrapper.find(Grid).length).toBe(1);
   });
   it("propsをちゃんと渡せてることの確認、componentDidMountの確認", () => {
-    jest.mock("../../external/ControllUser");
     const getUserDetailspy = jest.spyOn(Detail.prototype, "getUserDetail");
     const wrapper = setUp({
       userId: "userId",
@@ -75,15 +74,17 @@ describe("Detail", () => {
 
   it("getUserDetailの確認", () => {
     jest.mock("../../external/ControllUser");
+    const getUser = jest.fn().mockImplementation(() => Promise.resolve({}));
+    ControllUser.getUserData = getUser;
+
     const wrapper = setUp({
-      userId: "",
+      userId: "userId",
       dialogOpen: false,
       ranking: {
         rankByLanguages: []
       }
     });
-    // propsの確認
-    // expect(getUserData).toHaveBeenCalled();
-    // componentDidMount の確認
+    expect(wrapper.prop("userId")).toBe("userId");
+    expect(getUser).toHaveBeenCalled();
   });
 });

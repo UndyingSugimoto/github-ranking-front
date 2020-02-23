@@ -110,7 +110,7 @@ async function getUserDetail(userId: string) {
   });
 }
 
-export async function existsUser(userId: string) {
+async function existsUser(userId: string) {
   const endpoint = process.env.REACT_APP_BACKEND_ENDPOINT as string;
   const url = "/github-ranking/user/exists?";
   let params = new URLSearchParams();
@@ -120,7 +120,7 @@ export async function existsUser(userId: string) {
   });
 }
 
-export async function getUserData(userId: string) {
+async function getUserData(userId: string) {
   const exists = await existsUser(userId);
 
   if (exists.exists) {
@@ -159,9 +159,16 @@ export async function getUserData(userId: string) {
   }
 }
 
-export async function updateUserData(userId: string) {
+async function updateUserData(userId: string) {
   const userRes = await getUser(userId);
   await updateUser(userRes);
   const detail = await getUserDetail(userId);
   return detail;
 }
+
+const ControllUser = {
+  updateUserData: updateUserData,
+  getUserData: getUserData
+};
+
+export default ControllUser;

@@ -1,6 +1,6 @@
 import React from "react";
 import { UserDetailRes } from "../../external/data/UserDetailRes";
-import { getUserData, updateUserData } from "../../external/ControllUser";
+import ControllUser from "../../external/ControllUser";
 import {
   Box,
   Container,
@@ -67,7 +67,7 @@ export class Detail extends React.Component<DetailProps, DetailState> {
     if (userId === "" || userId === null || userId === undefined) {
       return;
     }
-    getUserData(userId).then(res => {
+    ControllUser.getUserData(userId).then(res => {
       this.setState({ userDetail: res });
     });
   }
@@ -92,7 +92,7 @@ export class Detail extends React.Component<DetailProps, DetailState> {
     }
 
     // TODO ここに最終更新日が今日だったら更新しないでアラートをだすようにロジック書く
-    updateUserData(userId).then(res => {
+    ControllUser.updateUserData(userId).then(res => {
       this.setState({ userDetail: res });
     });
   }
