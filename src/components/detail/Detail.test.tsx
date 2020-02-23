@@ -27,18 +27,12 @@ const userDetail = {
   lastupdateDate: new Date()
 };
 
-function setUp01() {
+function setUp(state: TopState) {
   const { match } = routerTestProps("/route/:userId", {
     userId: "testUserId"
   });
   const location = createLocation<TopState>(match.url);
-  location.state = {
-    userId: "userId",
-    dialogOpen: false,
-    ranking: {
-      rankByLanguages: []
-    }
-  };
+  location.state = state;
   const history = createMemoryHistory<TopState>();
 
   const wrapper = mount(
@@ -49,6 +43,7 @@ function setUp01() {
       history={history}
     />
   );
+
   return wrapper;
 }
 
@@ -62,19 +57,33 @@ describe("Detail", () => {
     //   );
     //   expect(wrapper.find(Grid).length).toBe(1);
   });
-  it("propsをちゃんと渡せてることの確認", () => {
-    //   const wrapper = mount(
-    //     <RankingList
-    //       ranksByLanguage={ranksByLanguage}
-    //       itemClickCallback={testMock}
-    //     />
-    //   );
-    //   expect(wrapper.prop("ranksByLanguage").language).toBe("language");
-    //   expect(wrapper.prop("itemClickCallback")).toBe(testMock);
-  });
-  it("propsをちゃんと渡せてることの確認", () => {
-    const wrapper = setUp01();
-    expect(wrapper.prop("userId")).toBe("userId");
+  it("propsをちゃんと渡せてることの確認、componentDidMountの確認", () => {
     jest.mock("../../external/ControllUser");
+    const getUserDetailspy = jest.spyOn(Detail.prototype, "getUserDetail");
+    const wrapper = setUp({
+      userId: "userId",
+      dialogOpen: false,
+      ranking: {
+        rankByLanguages: []
+      }
+    });
+    // propsの確認
+    expect(wrapper.prop("userId")).toBe("userId");
+    // componentDidMount の確認
+    expect(getUserDetailspy).toHaveBeenCalled();
+  });
+
+  it("getUserDetailの確認", () => {
+    jest.mock("../../external/ControllUser");
+    const wrapper = setUp({
+      userId: "",
+      dialogOpen: false,
+      ranking: {
+        rankByLanguages: []
+      }
+    });
+    // propsの確認
+    // expect(getUserData).toHaveBeenCalled();
+    // componentDidMount の確認
   });
 });
