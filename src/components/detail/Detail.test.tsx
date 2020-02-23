@@ -1,11 +1,13 @@
 import { UNSEARCHED } from "../../const/UtilCont";
 import ControllUser from "../../external/ControllUser";
 import { Detail } from "./Detail";
-import { mount } from "enzyme";
+import { mount, ReactWrapper } from "enzyme";
 import React from "react";
 import { routerTestProps } from "../../util/test/RoutComponentMock";
 import { createLocation, createMemoryHistory } from "history";
 import { TopState } from "../top/Top";
+import renderer from "react-test-renderer";
+import { cpus } from "os";
 
 const userDetail = {
   userName: "",
@@ -35,7 +37,7 @@ function setUp(state: TopState) {
   location.state = state;
   const history = createMemoryHistory<TopState>();
 
-  const wrapper = mount(
+  const wrapper = mount<Detail>(
     <Detail
       userId={"userId"}
       match={match}
@@ -73,7 +75,6 @@ describe("Detail", () => {
   });
 
   it("getUserDetailの確認", () => {
-    jest.mock("../../external/ControllUser");
     const getUser = jest.fn().mockImplementation(() => Promise.resolve({}));
     ControllUser.getUserData = getUser;
 
@@ -86,5 +87,68 @@ describe("Detail", () => {
     });
     expect(wrapper.prop("userId")).toBe("userId");
     expect(getUser).toHaveBeenCalled();
+  });
+
+  it("onClickUpdateButtonの確認", () => {
+    // メソッド呼び出しのモック化
+    const updateUserDetail = jest.spyOn(Detail.prototype, "updateUserDetail");
+
+    const wrapper = setUp({
+      userId: "userId",
+      dialogOpen: false,
+      ranking: {
+        rankByLanguages: []
+      }
+    });
+    const comp: Detail = wrapper.instance();
+    comp.setState({
+      userDetail: {
+        userName: "",
+        userId: UNSEARCHED,
+        avatarUrl: "",
+        githubUrl: "",
+        tier: "",
+        rank: 0,
+        score: 0,
+        currentNumber: 0,
+        followersCount: 0,
+        issuesCount: 0,
+        pullRequestCount: 0,
+        repositoriesCount: 0,
+        forksCountTotal: 0,
+        stargazerCountTotal: 0,
+        watchersCountTotal: 0,
+        mainLanguage: "",
+        lastupdateDate: new Date("2019/01/01")
+      }
+    });
+    // 異なる日ならコールされる
+    comp.onClickUpdateButton();
+    expect(updateUserDetail).toHaveBeenCalled();
+
+    comp.setState({
+      userDetail: {
+        userName: "",
+        userId: UNSEARCHED,
+        avatarUrl: "",
+        githubUrl: "",
+        tier: "",
+        rank: 0,
+        score: 0,
+        currentNumber: 0,
+        followersCount: 0,
+        issuesCount: 0,
+        pullRequestCount: 0,
+        repositoriesCount: 0,
+        forksCountTotal: 0,
+        stargazerCountTotal: 0,
+        watchersCountTotal: 0,
+        mainLanguage: "",
+        lastupdateDate: new Date()
+      }
+    });
+    // 同日ならopenする
+    comp.onClickUpdateButton();
+    expect(comp.state.openDialog).toBe(true);
   });
 });
