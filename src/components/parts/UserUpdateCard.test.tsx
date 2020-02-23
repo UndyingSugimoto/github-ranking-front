@@ -1,5 +1,4 @@
-import { Alert } from "./Alert";
-import { shallow, mount } from "enzyme";
+import { mount } from "enzyme";
 import React from "react";
 import { UserUpdateCard } from "./UserUpdateCard";
 import { Card, Button } from "@material-ui/core";
