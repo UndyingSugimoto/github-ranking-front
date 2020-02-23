@@ -24,10 +24,10 @@ import Alert from "@material-ui/lab/Alert";
 interface DetailProps extends RouteComponentProps<{}, {}, TopState> {
   userId: string;
 }
-interface DetailState {
+export type DetailState = {
   userDetail: UserDetailRes;
   openDialog: boolean;
-}
+};
 
 export class Detail extends React.Component<DetailProps, DetailState> {
   constructor(props: DetailProps) {
@@ -173,22 +173,6 @@ export class Detail extends React.Component<DetailProps, DetailState> {
                   lastupdateDate={new Date()}
                   onClickUpdateButton={this.onClickUpdateButton}
                 />
-                {/* <Card style={{ maxWidth: 270, display: "flex" }}>
-                  <CardContent>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      endIcon={<UpdateIcon>update</UpdateIcon>}
-                    >
-                      update
-                    </Button>
-                    <Box mt={3.5}>
-                      <Typography color="textSecondary">
-                        Last update :19/Feb
-                      </Typography>
-                    </Box>
-                  </CardContent>
-                </Card> */}
               </Grid>
             </Box>
           </Grid>
