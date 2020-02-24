@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import { Header } from "../parts/Header";
 import { RouteComponentProps } from "react-router-dom";
-import { getRanks } from "../../external/GetRanks";
+import GetRanks from "../../external/GetRanks";
 import { RankgByLanguageRes } from "../../external/data/RanksByLanguageRes";
 import {
   JAVASCRIPT,
@@ -73,7 +73,7 @@ export class Top extends React.Component<TopProps, TopState> {
   }
 
   getRanking() {
-    getRanks().then(res => {
+    GetRanks.getRanks().then(res => {
       this.setState({ userId: "", ranking: res });
     });
   }
