@@ -2,10 +2,10 @@ import AppClient from "../util/AppClient";
 import gql from "graphql-tag";
 import { GetUserRes } from "./data/GetUserRes";
 import { ApolloQueryResult } from "apollo-boost";
-import fetcher from "../util/Fetcher";
 import { UserDetailRes } from "./data/UserDetailRes";
 import { UserExistsRes } from "./data/UserExistsRes";
 import { NOTFOUND } from "dns";
+import Fetcher from "../util/Fetcher";
 
 async function getUser(loginUserId: String) {
   const query = gql`
@@ -73,7 +73,7 @@ async function entryUser(user: GetUserRes) {
   const endpoint = process.env.REACT_APP_BACKEND_ENDPOINT as string;
   const url = "/github-ranking/user/entry";
 
-  await fetcher(endpoint + url, {
+  await Fetcher.fetcher(endpoint + url, {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json"
@@ -87,7 +87,7 @@ async function updateUser(user: GetUserRes) {
   const endpoint = process.env.REACT_APP_BACKEND_ENDPOINT as string;
   const url = "/github-ranking/user/update";
 
-  await fetcher(endpoint + url, {
+  await Fetcher.fetcher(endpoint + url, {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json"
@@ -102,12 +102,15 @@ async function getUserDetail(userId: string) {
   const url = "/github-ranking/user/detail?";
   let params = new URLSearchParams();
   params.set("userId", userId);
-  return await fetcher<UserDetailRes>(endpoint + url + params.toString(), {
-    headers: {
-      Accept: "application/json"
-    },
-    method: "GET"
-  });
+  return await Fetcher.fetcher<UserDetailRes>(
+    endpoint + url + params.toString(),
+    {
+      headers: {
+        Accept: "application/json"
+      },
+      method: "GET"
+    }
+  );
 }
 
 async function existsUser(userId: string) {
@@ -115,9 +118,12 @@ async function existsUser(userId: string) {
   const url = "/github-ranking/user/exists?";
   let params = new URLSearchParams();
   params.set("userId", userId);
-  return await fetcher<UserExistsRes>(endpoint + url + params.toString(), {
-    method: "GET"
-  });
+  return await Fetcher.fetcher<UserExistsRes>(
+    endpoint + url + params.toString(),
+    {
+      method: "GET"
+    }
+  );
 }
 
 async function getUserData(userId: string) {

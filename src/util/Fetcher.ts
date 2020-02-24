@@ -29,4 +29,8 @@ const fetcher = <T = any>(
   return wrap<T>(fetch(input, init));
 };
 
-export default fetcher;
+const Fetcher = {
+  fetcher: fetcher
+};
+
+export default Fetcher;
