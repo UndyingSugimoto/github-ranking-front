@@ -14,7 +14,7 @@ exports[`UserUpdateCard snapshot 1`] = `
     className="MuiCardContent-root"
   >
     <button
-      className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+      className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall"
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
@@ -36,7 +36,7 @@ exports[`UserUpdateCard snapshot 1`] = `
       >
         update
         <span
-          className="MuiButton-endIcon MuiButton-iconSizeMedium"
+          className="MuiButton-endIcon MuiButton-iconSizeSmall"
         >
           <svg
             aria-hidden="true"
@@ -59,7 +59,7 @@ exports[`UserUpdateCard snapshot 1`] = `
         className="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
       >
         Last update :
-        Mon Feb 24 2020
+        Tue Feb 25 2020
       </p>
     </div>
   </div>

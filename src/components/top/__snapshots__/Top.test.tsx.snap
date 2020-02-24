@@ -56,11 +56,12 @@ exports[`Top snapshot 1`] = `
     <div
       className="MuiBox-root MuiBox-root-116"
     >
-      <h2
-        className="MuiTypography-root MuiTypography-h2"
-      >
-        This is GitHub Ranking Page
-      </h2>
+      <img
+        alt=""
+        height={120}
+        src="top.png"
+        width={400}
+      />
     </div>
     <div
       className="MuiBox-root MuiBox-root-117"
@@ -74,7 +75,7 @@ exports[`Top snapshot 1`] = `
           htmlFor="standard-basic"
           id="standard-basic-label"
         >
-          LoginUserName
+          GitHub ID
         </label>
         <div
           className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"

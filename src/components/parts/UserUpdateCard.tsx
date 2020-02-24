@@ -22,6 +22,7 @@ export class UserUpdateCard extends React.Component<UserUpdateCardProps, {}> {
           <Button
             variant="contained"
             color="primary"
+            size="small"
             endIcon={<UpdateIcon>update</UpdateIcon>}
             onClick={event => {
               this.props.onClickUpdateButton(event);

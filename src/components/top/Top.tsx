@@ -1,13 +1,6 @@
 import React, { ChangeEvent } from "react";
 import Button from "@material-ui/core/Button";
-import {
-  TextField,
-  Container,
-  Box,
-  Typography,
-  Grid,
-  Snackbar
-} from "@material-ui/core";
+import { TextField, Container, Box, Grid, Snackbar } from "@material-ui/core";
 import { Header } from "../parts/Header";
 import { RouteComponentProps } from "react-router-dom";
 import GetRanks from "../../external/GetRanks";
@@ -25,6 +18,7 @@ import {
 } from "../../const/Language";
 import { RankingList } from "../parts/RankingList";
 import Alert from "@material-ui/lab/Alert";
+import topImage from "../../static/top.png";
 
 interface TopProps extends RouteComponentProps<{}> {
   screenName: string;
@@ -132,13 +126,13 @@ export class Top extends React.Component<TopProps, TopState> {
       <div>
         <Container>
           <Header />
-          <Box textAlign="center" m={5}>
-            <Typography variant="h2">This is GitHub Ranking Page</Typography>
+          <Box textAlign="center" m={3}>
+            <img src={topImage} alt={""} width={400} height={120}></img>
           </Box>
           <Box textAlign="center">
             <TextField
               id="standard-basic"
-              label="LoginUserName"
+              label="GitHub ID"
               value={this.state.userId}
               onChange={this.handleChange}
             />
