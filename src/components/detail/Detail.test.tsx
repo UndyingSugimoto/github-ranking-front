@@ -1,13 +1,11 @@
 import { UNSEARCHED } from "../../const/UtilCont";
 import ControllUser from "../../external/ControllUser";
 import { Detail } from "./Detail";
-import { mount, ReactWrapper } from "enzyme";
+import { mount } from "enzyme";
 import React from "react";
 import { routerTestProps } from "../../util/test/RoutComponentMock";
 import { createLocation, createMemoryHistory } from "history";
 import { TopState } from "../top/Top";
-import renderer from "react-test-renderer";
-import { cpus } from "os";
 import { CircularProgress } from "@material-ui/core";
 import { NOTFOUND } from "dns";
 import { UserProfileCard } from "../parts/UserProfileCard";
