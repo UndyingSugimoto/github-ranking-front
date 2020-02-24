@@ -1,44 +1,57 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 課題についてのコメント
 
-## Available Scripts
+※編集ユーザが２名(UndyingSugimoto、kouji360）いますが、サブアカウントです。
 
-In the project directory, you can run:
+### サービス概要
+ GitHubの活動履歴をスコア化して、ランキングを表示するサービスです。ログインユーザ名で検索することで、ユーザの詳細なスコアも確認できます。主要な言語のトップ3をトップページに表示しています。
+ 
+### アプリケーションの目的
+ 主要なターゲットは①一般のGitHubユーザ、②組織の採用担当者です。①については興味を持ってくれるユーザがそれなりにいるだろうということ、②については入社希望者などのアカウントを調べて、社内の人間と比べて技術力を測るといったところが仕様策定の中心的理由になります。
+ 
+### テストについて
+ - フロントエンドについて
+  テストが書けるというところと、どういうところを大事だと思ってテストを書いているかを示しました。カバレッジ100とかは時間がかかるので今回は目指していません。
+ - サーバーサイドについて
+  今回のポジション的にサーバーサイドはおまけだと思っているので、時間のかかる単体テストコードは書いていません。打鍵でテストしています。
+ - 結合試験について
+  こちらも打鍵です。
+ 
+### こだわりと言い訳
+ スタイルを極力使わないように（デザイナーはいないプロジェクトなので）、Material-uiを積極的に利用しました。
+ 課題の意図を考えると（あとせっかく勉強したので）、もっとGraphqlを使いたいとは思ったのですが、サービスとして面白い案が浮かんでしまったのでそちらを優先して作成しました。
+ GitHubのAPIだけで完結したアプリケーションにすると、GitHubの劣化みたいなサービスしかできるイメージがなかったので、JavaでREST-APIを作り補いました。Javaを使った理由は慣れているので、何も考えずに作れるからです。
+ フロントエンドでの応募なので、サーバーサイドはとりあえず動くもの程度のものであることはご容赦ください（テストも打鍵で済ませました。普段はj-unitを書きます...）。
+ 
+ 
+### かかった時間
+　GitHubの活動履歴を見ればおおよそなものはわかりますが、覚えている限り詳細を下記します。
+ - 共通
+    - ネタ出し 8h
+    - 基本設計・テーブル設計 8h
+    - 結合テスト 1h
+ - フロントエンド
+    - 画面設計 4h
+    - 実装 24h
+    - 単体テスト 16h
+ - サーバーサイド
+    - API設計 2h
+    - 実装 8h
+    - 単体テスト(打鍵) 1h
 
-### `npm start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### アプリケーション構成
+ フロントエンドアプリケーションとサーバーサイドアプリケーション、ならびにPostgreSQLデータベースからなるアプリケーションです。デプロイ先はHerokuです。
+ 
+### 主要な採用技術
+- フロントエンド
+  - TypeScript
+  - React.js
+  - Appolo
+  - Material-ui
+  - jest with enzyme
+  - Node.js(npm)
+- サーバーサイド
+  - Java
+  - Spring Boot
+  - Gradle
+  - MyBatis
+  - PostgreSQL
