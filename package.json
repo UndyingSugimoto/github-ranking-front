@@ -60,7 +60,6 @@
       "src/**/*.{js,jsx,ts,tsx}",
       "!<rootDir>/node_modules/",
       "!<rootDir>/path/to/dir/"
-    ],
-    "collectCoverage": true
+    ]
   }
 }
