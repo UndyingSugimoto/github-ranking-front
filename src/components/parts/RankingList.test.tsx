@@ -3,6 +3,7 @@ import React from "react";
 import { RankingList } from "./RankingList";
 import { RanksByLanguage } from "../../external/data/RanksByLanguage";
 import { Grid } from "@material-ui/core";
+import renderer from "react-test-renderer";
 
 const ranksByLanguage: RanksByLanguage = {
   language: "language",
@@ -11,6 +12,17 @@ const ranksByLanguage: RanksByLanguage = {
 const testMock = jest.fn();
 
 describe("RankingList", () => {
+  it("snapshot", () => {
+    const tree = renderer
+      .create(
+        <RankingList
+          ranksByLanguage={ranksByLanguage}
+          itemClickCallback={testMock}
+        />
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
   it("レンダリングの確認", () => {
     const wrapper = mount(
       <RankingList

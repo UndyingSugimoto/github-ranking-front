@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RankingList snapshot 1`] = `
+<div
+  className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+>
+  <h6
+    className="MuiTypography-root MuiTypography-h6"
+  >
+    language
+  </h6>
+  <div>
+    <ul
+      className="MuiList-root MuiList-padding"
+    />
+  </div>
+</div>
+`;

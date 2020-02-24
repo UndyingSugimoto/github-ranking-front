@@ -1,9 +1,14 @@
 import React from "react";
 import { Header, HeaderState } from "./Header";
-import { shallow, mount } from "enzyme";
-import { List, IconButton, Drawer } from "@material-ui/core";
+import { shallow } from "enzyme";
+import { List, IconButton } from "@material-ui/core";
+import renderer from "react-test-renderer";
 
 describe("Header", () => {
+  it("snapshot", () => {
+    const tree = renderer.create(<Header />).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
   it("レンダリングの確認", () => {
     const wrapper = shallow(<Header />);
     //子コンポーネントが返ってきてるのでレンダリング成功

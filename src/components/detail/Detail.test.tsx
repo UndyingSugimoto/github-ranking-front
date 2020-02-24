@@ -9,6 +9,7 @@ import { TopState } from "../top/Top";
 import { CircularProgress } from "@material-ui/core";
 import { NOTFOUND } from "dns";
 import { UserProfileCard } from "../parts/UserProfileCard";
+import renderer from "react-test-renderer";
 
 function setUp(state: TopState) {
   const { match } = routerTestProps("/route/:userId", {
@@ -31,6 +32,31 @@ function setUp(state: TopState) {
 }
 
 describe("Detail", () => {
+  it("snapshot", () => {
+    const { match } = routerTestProps("/route/:userId", {
+      userId: "testUserId"
+    });
+    const location = createLocation<TopState>(match.url);
+    location.state = {
+      userId: "userId",
+      dialogOpen: false,
+      ranking: {
+        rankByLanguages: []
+      }
+    };
+    const history = createMemoryHistory<TopState>();
+    const tree = renderer
+      .create(
+        <Detail
+          userId={"userId"}
+          match={match}
+          location={location}
+          history={history}
+        />
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
   it("レンダリングの確認", () => {
     const wrapper = setUp({
       userId: "userId",

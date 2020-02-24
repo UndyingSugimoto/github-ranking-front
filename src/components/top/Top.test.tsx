@@ -5,6 +5,7 @@ import { createLocation, createMemoryHistory } from "history";
 import React from "react";
 import { Snackbar } from "@material-ui/core";
 import GetRanks from "../../external/GetRanks";
+import renderer from "react-test-renderer";
 
 function setUp(state: TopState) {
   const { match } = routerTestProps("/top/", {});
@@ -25,6 +26,29 @@ function setUp(state: TopState) {
 }
 
 describe("Top", () => {
+  it("snapshot", () => {
+    const { match } = routerTestProps("/top/", {});
+    const location = createLocation<TopState>(match.url);
+    location.state = {
+      userId: "userId",
+      dialogOpen: true,
+      ranking: {
+        rankByLanguages: []
+      }
+    };
+    const history = createMemoryHistory<TopState>();
+    const tree = renderer
+      .create(
+        <Top
+          match={match}
+          location={location}
+          history={history}
+          screenName={"top"}
+        />
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
   test("レンダリングの確認", () => {
     const wrapper = setUp({
       userId: "userId",

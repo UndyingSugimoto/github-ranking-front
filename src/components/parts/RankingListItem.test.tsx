@@ -2,6 +2,7 @@ import { mount } from "enzyme";
 import React from "react";
 import { RankingListItem } from "./RankingListItem";
 import { ListItem } from "@material-ui/core";
+import renderer from "react-test-renderer";
 
 const user = {
   userId: "userId",
@@ -13,6 +14,14 @@ const user = {
 const testMock = jest.fn();
 
 describe("RankingListItem", () => {
+  it("snapshot", () => {
+    const tree = renderer
+      .create(
+        <RankingListItem rank={1} user={user} itemClickCallback={testMock} />
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
   it("レンダリングの確認", () => {
     const wrapper = mount(
       <RankingListItem rank={1} user={user} itemClickCallback={testMock} />

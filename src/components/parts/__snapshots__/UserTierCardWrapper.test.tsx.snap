@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserTierCardWrapper snapshot 1`] = `
+<div
+  className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+  style={
+    Object {
+      "display": "flex",
+      "maxWidth": 270,
+    }
+  }
+>
+  <img
+    className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img"
+    src="bronze.png"
+    style={
+      Object {
+        "margin": 15,
+        "width": 100,
+      }
+    }
+  />
+  <div
+    className="MuiCardContent-root"
+  >
+    <h6
+      className="MuiTypography-root MuiTypography-h6 MuiTypography-colorPrimary"
+    >
+      tier
+    </h6>
+    <p
+      className="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
+    >
+      Score : 
+      0
+    </p>
+    <p
+      className="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
+    >
+      Under 40%
+    </p>
+  </div>
+</div>
+`;

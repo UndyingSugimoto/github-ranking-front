@@ -1,0 +1,280 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Top snapshot 1`] = `
+<div>
+  <div
+    className="MuiContainer-root MuiContainer-maxWidthLg"
+  >
+    <header
+      className="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary MuiPaper-elevation4"
+    >
+      <div
+        className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
+      >
+        <button
+          aria-label="menu"
+          className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-edgeStart"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          <span
+            className="MuiIconButton-label"
+          >
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root"
+              focusable="false"
+              role="presentation"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+              />
+            </svg>
+          </span>
+        </button>
+        <h6
+          className="MuiTypography-root MuiTypography-h6"
+        >
+          GitHub Ranking
+        </h6>
+      </div>
+    </header>
+    <div
+      className="MuiBox-root MuiBox-root-116"
+    >
+      <h2
+        className="MuiTypography-root MuiTypography-h2"
+      >
+        This is GitHub Ranking Page
+      </h2>
+    </div>
+    <div
+      className="MuiBox-root MuiBox-root-117"
+    >
+      <div
+        className="MuiFormControl-root MuiTextField-root"
+      >
+        <label
+          className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
+          data-shrink={false}
+          htmlFor="standard-basic"
+          id="standard-basic-label"
+        >
+          LoginUserName
+        </label>
+        <div
+          className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+          onClick={[Function]}
+        >
+          <input
+            aria-invalid={false}
+            autoFocus={false}
+            className="MuiInputBase-input MuiInput-input"
+            disabled={false}
+            id="standard-basic"
+            onAnimationStart={[Function]}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            required={false}
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiBox-root MuiBox-root-175"
+    >
+      <button
+        className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <span
+          className="MuiButton-label"
+        >
+          SHOW PROFILE
+        </span>
+      </button>
+    </div>
+    <div
+      className="MuiBox-root MuiBox-root-205"
+    >
+      <div
+        className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+      >
+        <div
+          className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+        >
+          <h6
+            className="MuiTypography-root MuiTypography-h6"
+          >
+            General
+          </h6>
+          <div>
+            <ul
+              className="MuiList-root MuiList-padding"
+            />
+          </div>
+        </div>
+        <div
+          className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+        >
+          <h6
+            className="MuiTypography-root MuiTypography-h6"
+          >
+            JavaScript
+          </h6>
+          <div>
+            <ul
+              className="MuiList-root MuiList-padding"
+            />
+          </div>
+        </div>
+        <div
+          className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+        >
+          <h6
+            className="MuiTypography-root MuiTypography-h6"
+          >
+            Python
+          </h6>
+          <div>
+            <ul
+              className="MuiList-root MuiList-padding"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiBox-root MuiBox-root-313"
+    >
+      <div
+        className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+      >
+        <div
+          className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+        >
+          <h6
+            className="MuiTypography-root MuiTypography-h6"
+          >
+            Java
+          </h6>
+          <div>
+            <ul
+              className="MuiList-root MuiList-padding"
+            />
+          </div>
+        </div>
+        <div
+          className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+        >
+          <h6
+            className="MuiTypography-root MuiTypography-h6"
+          >
+            C#
+          </h6>
+          <div>
+            <ul
+              className="MuiList-root MuiList-padding"
+            />
+          </div>
+        </div>
+        <div
+          className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+        >
+          <h6
+            className="MuiTypography-root MuiTypography-h6"
+          >
+            PHP
+          </h6>
+          <div>
+            <ul
+              className="MuiList-root MuiList-padding"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiBox-root MuiBox-root-314"
+    >
+      <div
+        className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+      >
+        <div
+          className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+        >
+          <h6
+            className="MuiTypography-root MuiTypography-h6"
+          >
+            C++
+          </h6>
+          <div>
+            <ul
+              className="MuiList-root MuiList-padding"
+            />
+          </div>
+        </div>
+        <div
+          className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+        >
+          <h6
+            className="MuiTypography-root MuiTypography-h6"
+          >
+            Ruby
+          </h6>
+          <div>
+            <ul
+              className="MuiList-root MuiList-padding"
+            />
+          </div>
+        </div>
+        <div
+          className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+        >
+          <h6
+            className="MuiTypography-root MuiTypography-h6"
+          >
+            Go
+          </h6>
+          <div>
+            <ul
+              className="MuiList-root MuiList-padding"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

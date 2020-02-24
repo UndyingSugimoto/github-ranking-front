@@ -3,6 +3,7 @@ import React from "react";
 import { UserProfileCard } from "./UserProfileCard";
 import { CardMedia } from "@material-ui/core";
 import { UNSEARCHED } from "../../const/UtilCont";
+import renderer from "react-test-renderer";
 
 const userDetail = {
   userName: "userName",
@@ -24,6 +25,12 @@ const userDetail = {
   lastupdateDate: new Date()
 };
 
+it("snapshot", () => {
+  const tree = renderer
+    .create(<UserProfileCard userDetail={userDetail} />)
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
 describe("UserProfileCard", () => {
   it("レンダリングの確認", () => {
     const wrapper = mount(<UserProfileCard userDetail={userDetail} />);

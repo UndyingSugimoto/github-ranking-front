@@ -3,6 +3,7 @@ import React from "react";
 import { UserScoreDetail } from "./UserScoreDetail";
 import { TableContainer } from "@material-ui/core";
 import { UNSEARCHED } from "../../const/UtilCont";
+import renderer from "react-test-renderer";
 
 const userDetail = {
   userName: "userName",
@@ -25,6 +26,12 @@ const userDetail = {
 };
 
 describe("UserScoreDetail", () => {
+  it("snapshot", () => {
+    const tree = renderer
+      .create(<UserScoreDetail userDetail={userDetail} />)
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
   it("レンダリングの確認", () => {
     const wrapper = mount(<UserScoreDetail userDetail={userDetail} />);
     expect(wrapper.find(TableContainer).length).toBe(1);

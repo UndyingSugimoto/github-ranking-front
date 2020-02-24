@@ -2,11 +2,20 @@ import { mount } from "enzyme";
 import React from "react";
 import { UserUpdateCard } from "./UserUpdateCard";
 import { Card, Button } from "@material-ui/core";
+import renderer from "react-test-renderer";
 
 const date = new Date();
 const testMock = jest.fn();
 
 describe("UserUpdateCard", () => {
+  it("snapshot", () => {
+    const tree = renderer
+      .create(
+        <UserUpdateCard lastupdateDate={date} onClickUpdateButton={testMock} />
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
   it("レンダリングの確認", () => {
     const wrapper = mount(
       <UserUpdateCard lastupdateDate={date} onClickUpdateButton={testMock} />

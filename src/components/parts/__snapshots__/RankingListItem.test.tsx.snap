@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RankingListItem snapshot 1`] = `
+<li
+  className="MuiListItem-root MuiListItem-gutters"
+  disabled={false}
+  onClick={[Function]}
+  style={
+    Object {
+      "cursor": "pointer",
+    }
+  }
+>
+  <div
+    className="MuiListItemAvatar-root"
+  >
+    <div
+      className="MuiAvatar-root MuiAvatar-circle"
+    >
+      <img
+        alt="userId"
+        className="MuiAvatar-img"
+        src="avatarUrl"
+      />
+    </div>
+  </div>
+  <div
+    className="MuiListItemText-root"
+  >
+    <span
+      className="MuiTypography-root MuiListItemText-primary MuiTypography-body1"
+    >
+      1
+    </span>
+  </div>
+  <div
+    className="MuiListItemText-root"
+  >
+    <span
+      className="MuiTypography-root MuiListItemText-primary MuiTypography-body1"
+    >
+      userId
+    </span>
+  </div>
+</li>
+`;

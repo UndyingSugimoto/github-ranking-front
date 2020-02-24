@@ -18,8 +18,15 @@ import pratinum from "../../static/pratinum.png";
 import diamond from "../../static/diamond.png";
 import master from "../../static/master.png";
 import challenger from "../../static/challenger.png";
+import renderer from "react-test-renderer";
 
 describe("UserTierCardWrapper", () => {
+  it("snapshot", () => {
+    const tree = renderer
+      .create(<UserTierCardWrapper tier={"tier"} score={0} />)
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
   it("レンダリングの確認", () => {
     const wrapper = mount(<UserTierCardWrapper tier={"tier"} score={0} />);
     expect(wrapper.find(UserTierCard).length).toBe(1);
