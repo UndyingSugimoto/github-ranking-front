@@ -144,7 +144,11 @@ export class Detail extends React.Component<DetailProps, DetailState> {
                 </Typography>
               </Box>
               <Box p={4}>
-                <Button variant="contained" onClick={this.backTop}>
+                <Button
+                  variant="contained"
+                  onClick={this.backTop}
+                  className={"backToTopButton"}
+                >
                   BACK TO TOP
                 </Button>
               </Box>

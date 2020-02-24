@@ -8,26 +8,9 @@ import { createLocation, createMemoryHistory } from "history";
 import { TopState } from "../top/Top";
 import renderer from "react-test-renderer";
 import { cpus } from "os";
-
-const userDetail = {
-  userName: "",
-  userId: UNSEARCHED,
-  avatarUrl: "",
-  githubUrl: "",
-  tier: "",
-  rank: 0,
-  score: 0,
-  currentNumber: 0,
-  followersCount: 0,
-  issuesCount: 0,
-  pullRequestCount: 0,
-  repositoriesCount: 0,
-  forksCountTotal: 0,
-  stargazerCountTotal: 0,
-  watchersCountTotal: 0,
-  mainLanguage: "",
-  lastupdateDate: new Date()
-};
+import { CircularProgress } from "@material-ui/core";
+import { NOTFOUND } from "dns";
+import { UserProfileCard } from "../parts/UserProfileCard";
 
 function setUp(state: TopState) {
   const { match } = routerTestProps("/route/:userId", {
@@ -51,13 +34,66 @@ function setUp(state: TopState) {
 
 describe("Detail", () => {
   it("レンダリングの確認", () => {
-    //   const wrapper = mount(
-    //     <RankingList
-    //       ranksByLanguage={ranksByLanguage}
-    //       itemClickCallback={testMock}
-    //     />
-    //   );
-    //   expect(wrapper.find(Grid).length).toBe(1);
+    const wrapper = setUp({
+      userId: "userId",
+      dialogOpen: false,
+      ranking: {
+        rankByLanguages: []
+      }
+    });
+
+    //ロード中
+    expect(wrapper.find(CircularProgress).length).toBe(1);
+
+    wrapper.setState({
+      userDetail: {
+        userName: "",
+        userId: NOTFOUND,
+        avatarUrl: "",
+        githubUrl: "",
+        tier: "",
+        rank: 0,
+        score: 0,
+        currentNumber: 0,
+        followersCount: 0,
+        issuesCount: 0,
+        pullRequestCount: 0,
+        repositoriesCount: 0,
+        forksCountTotal: 0,
+        stargazerCountTotal: 0,
+        watchersCountTotal: 0,
+        mainLanguage: "",
+        lastupdateDate: new Date("2019/01/01")
+      }
+    });
+
+    // Not Found
+    expect(wrapper.find(".backToTopButton").length).toBeGreaterThan(1);
+
+    wrapper.setState({
+      userDetail: {
+        userName: "",
+        userId: "userId",
+        avatarUrl: "",
+        githubUrl: "",
+        tier: "",
+        rank: 0,
+        score: 0,
+        currentNumber: 0,
+        followersCount: 0,
+        issuesCount: 0,
+        pullRequestCount: 0,
+        repositoriesCount: 0,
+        forksCountTotal: 0,
+        stargazerCountTotal: 0,
+        watchersCountTotal: 0,
+        mainLanguage: "",
+        lastupdateDate: new Date("2019/01/01")
+      }
+    });
+
+    // 見つかった場合
+    expect(wrapper.find(UserProfileCard).length).toBe(1);
   });
   it("propsをちゃんと渡せてることの確認、componentDidMountの確認", () => {
     const getUserDetailspy = jest.spyOn(Detail.prototype, "getUserDetail");
@@ -150,5 +186,55 @@ describe("Detail", () => {
     // 同日ならopenする
     comp.onClickUpdateButton();
     expect(comp.state.openDialog).toBe(true);
+  });
+
+  it("updateUserDetailの確認", () => {
+    const updateUser = jest.fn().mockImplementation(() => Promise.resolve({}));
+    ControllUser.updateUserData = updateUser;
+
+    const wrapper = setUp({
+      userId: "userId",
+      dialogOpen: false,
+      ranking: {
+        rankByLanguages: []
+      }
+    });
+    const comp: Detail = wrapper.instance();
+    comp.updateUserDetail("userId");
+    expect(updateUser).toHaveBeenCalled();
+  });
+
+  it("backTopの確認", () => {
+    const mock = jest.fn();
+
+    const wrapper = setUp({
+      userId: "userId",
+      dialogOpen: false,
+      ranking: {
+        rankByLanguages: []
+      }
+    });
+    const comp: Detail = wrapper.instance();
+    comp.props.history.push = mock;
+    comp.backTop();
+    expect(mock).toHaveBeenCalled();
+  });
+
+  it("backTopの確認", () => {
+    const wrapper = setUp({
+      userId: "userId",
+      dialogOpen: false,
+      ranking: {
+        rankByLanguages: []
+      }
+    });
+    const comp: Detail = wrapper.instance();
+
+    comp.setState({
+      openDialog: true
+    });
+
+    comp.dialogClose();
+    expect(comp.state.openDialog).toBe(false);
   });
 });
