@@ -1,6 +1,5 @@
-import { shallow, mount } from "enzyme";
+import { mount } from "enzyme";
 import App from "./App";
-import MuiAlert from "@material-ui/lab/Alert";
 
 import React from "react";
 import { MemoryRouter } from "react-router-dom";
